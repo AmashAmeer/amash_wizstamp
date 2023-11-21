@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
+import 'dart:ui' as ui;
 
+import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import '../utils/theme.dart';
 
 class Propertyrent extends StatefulWidget {
@@ -13,6 +15,8 @@ class _PropertyrentState extends State<Propertyrent> {
   String signature1 = '';
 
   String signature2 = '';
+  GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+  GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +45,7 @@ class _PropertyrentState extends State<Propertyrent> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 190 / 100,
+                  height: MediaQuery.of(context).size.height * 250 / 100,
                   child: Column(
                     children: [
                       //
@@ -210,54 +214,49 @@ class _PropertyrentState extends State<Propertyrent> {
                       //
                       //
                       Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.only(left: 20, top: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width * 40 / 100,
-                              child: TextField(
-                                onChanged: (value) {
-                                  if (value.length < 15) {
-                                    signature1 = value;
-                                    setState(() {});
-                                  } else {
-                                    if (isSnackBarVisible == false) {
-                                      showSnackBarF(context,
-                                          'Fill signature less than 15-words');
-                                    }
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                    hintText: 'Fill your signature',
-                                    label: const Text(
-                                      'Signature',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black))),
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20)),
+                              height: 180,
+                              width: 230,
+                              child: SfSignaturePad(
+                                minimumStrokeWidth: 1,
+                                maximumStrokeWidth: 3,
+                                strokeColor: Colors.blue,
+                                key: _signaturePadKey,
+                                backgroundColor: Colors.grey[200],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      35 /
-                                      100,
-                                  child: Text(
-                                    signature1,
-                                    textAlign: TextAlign.end,
-                                    style: const TextStyle(
-                                        fontFamily: 'song',
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                            )
+                              padding:
+                                  const EdgeInsets.only(top: 15.0, left: 0),
+                              child: Row(
+                                children: [
+                                  ElevatedButton(
+                                      child:
+                                          const Text('Save Signature As Image'),
+                                      onPressed: () async {
+                                        ui.Image image = await _signaturePadKey
+                                            .currentState!
+                                            .toImage();
+                                      }),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: ElevatedButton(
+                                        child: const Text("Clear"),
+                                        onPressed: () async {
+                                          _signaturePadKey.currentState!
+                                              .clear();
+                                        }),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -353,56 +352,50 @@ class _PropertyrentState extends State<Propertyrent> {
                       //
                       //
                       //
-                      //
                       Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.only(left: 20, top: 15),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              width:
-                                  MediaQuery.of(context).size.width * 40 / 100,
-                              child: TextField(
-                                onChanged: (value) {
-                                  if (value.length < 15) {
-                                    signature1 = value;
-                                    setState(() {});
-                                  } else {
-                                    if (isSnackBarVisible == false) {
-                                      showSnackBarF(context,
-                                          'Fill signature less than 15-words');
-                                    }
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                    hintText: 'Fill your signature',
-                                    label: const Text(
-                                      'Signature',
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    focusedBorder: const OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black))),
+                            Container(
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20)),
+                              height: 180,
+                              width: 230,
+                              child: SfSignaturePad(
+                                minimumStrokeWidth: 1,
+                                maximumStrokeWidth: 3,
+                                strokeColor: Colors.blue,
+                                key: _signaturePadKey1,
+                                backgroundColor: Colors.grey[200],
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 10),
-                              child: SizedBox(
-                                  width: MediaQuery.of(context).size.width *
-                                      35 /
-                                      100,
-                                  child: Text(
-                                    signature1,
-                                    textAlign: TextAlign.end,
-                                    style: const TextStyle(
-                                        fontFamily: 'song',
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                            )
+                              padding:
+                                  const EdgeInsets.only(top: 15.0, left: 0),
+                              child: Row(
+                                children: [
+                                  ElevatedButton(
+                                      child:
+                                          const Text('Save Signature As Image'),
+                                      onPressed: () async {
+                                        ui.Image image = await _signaturePadKey
+                                            .currentState!
+                                            .toImage();
+                                      }),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10.0),
+                                    child: ElevatedButton(
+                                        child: const Text("Clear"),
+                                        onPressed: () async {
+                                          _signaturePadKey1.currentState!
+                                              .clear();
+                                        }),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                       ),

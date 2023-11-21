@@ -8,6 +8,7 @@ import 'brand.dart';
 
 import 'olddoc.dart';
 
+import 'signup.dart';
 import 'track.dart';
 
 class Home extends StatefulWidget {
@@ -439,6 +440,23 @@ class Drawerwidget extends StatelessWidget {
             },
             leading: const Icon(Icons.card_membership),
             title: const Text('Branding'),
+          ),
+          const Divider(),
+          //
+          //
+          //
+          //
+          ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Signupp(),
+                ),
+              );
+            },
+            leading: const Icon(Icons.card_membership),
+            title: const Text('Account'),
           ),
           const Divider(),
           //

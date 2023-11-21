@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:wizstamp/utils/theme.dart';
 
-import 'create2.dart';
-import 'create3.dart';
-import 'create5.dart';
-import 'create6.dart';
+import 'vehicle.dart';
+import 'electronic.dart';
+// import 'livestock.dart';
+// import 'good.dart';
 import 'realstatetype.dart';
 
 class Create extends StatelessWidget {
@@ -18,24 +18,24 @@ class Create extends StatelessWidget {
     },
     {
       'img': 'assets/icon 3.png',
-      'title': 'Car sell Documents',
-      'onClick': const Create2(),
+      'title': 'Motor Vehicle Documents',
+      'onClick': const Carsell(),
     },
     {
       'img': 'assets/icon 1.png',
       'title': 'Electronic Accessories Documents',
-      'onClick': const Create3(),
+      'onClick': const Electronic(),
     },
-    {
-      'img': 'assets/icon 3.png',
-      'title': 'Livestock Documents',
-      'onClick': const Create5(),
-    },
-    {
-      'img': 'assets/icon 2.png',
-      'title': 'Goods Documents',
-      'onClick': const Create6(),
-    },
+    // {
+    //   'img': 'assets/icon 3.png',
+    //   'title': 'Livestock Documents',
+    //   'onClick': const Livestock(),
+    // },
+    // {
+    //   'img': 'assets/icon 2.png',
+    //   'title': 'Goods Documents',
+    //   'onClick': const Goods(),
+    // },
   ];
 
   @override
