@@ -81,7 +81,7 @@ class _TrackState extends State<Track> {
                   )),
             ),
           ),
-          const Text('new feature'),
+          const Center(child: Text('new feature')),
           // Text(four.toString()),
         ],
       ),
