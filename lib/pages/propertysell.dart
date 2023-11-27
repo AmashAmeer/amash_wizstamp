@@ -1,15 +1,22 @@
 import 'dart:async';
-
+import 'dart:typed_data';
+import 'dart:io';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
 import 'package:flutter/widgets.dart';
-import '../utils/theme.dart';
+import 'package:intl/intl.dart';
+import 'package:open_file/open_file.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:wizstamp/pages/design_of_seller_details.dart';
+import 'package:wizstamp/pages/real_estate_seller_document_confirmation_page.dart';
+import '../../utils/theme.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
 class Propertysell extends StatefulWidget {
   const Propertysell({super.key});
+
   @override
   State<Propertysell> createState() => _PropertysellState();
 }
@@ -17,17 +24,52 @@ class Propertysell extends StatefulWidget {
 class _PropertysellState extends State<Propertysell> {
   String signature1 = '';
   String signature2 = '';
-  GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
-  GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
+  ui.Image? signatureImage;
+  final GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
+
+  // final GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cnicController = TextEditingController();
+  TextEditingController officeController = TextEditingController();
+  TextEditingController commissionController = TextEditingController();
+  TextEditingController propertyPriceController = TextEditingController();
+  TextEditingController propertyLocationController = TextEditingController();
+  TextEditingController signatureController = TextEditingController();
+
+
+//   void saveImage() async {
+//     signatureImagePath = '';
+//     print('save image is called');
+//     final data = await _signaturePadKey.currentState!.toImage();
+//     final bytes = await data.toByteData(format: ui.ImageByteFormat.png);
+//     final Uint8List imageBytes =
+//         bytes!.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes);
+//     final String path = (await getApplicationSupportDirectory()).path;
+//     final String fileName = '$path/Output.png';
+//     print('path of image is .. $fileName');
+//     final File file = File(fileName);
+//     await file.writeAsBytes(imageBytes, flush: true);
+//     OpenFile.open(fileName);
+//     print(file.runtimeType);
+//     signatureImagePath = fileName;
+//
+// // print(object)
+//   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white,
+        ),
         title: const Text(
           'Property For Sell',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 94, 2, 254),
       ),
@@ -47,9 +89,10 @@ class _PropertysellState extends State<Propertysell> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 250 / 100,
+                  height: MediaQuery.of(context).size.height * 578/ 100,
                   child: Column(
                     children: [
+
                       //
                       //
                       //
@@ -59,13 +102,13 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       //
                       //
-                      const Padding(
+                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Center(
                           child: Text(
                             "Seller/Dealer  information",
                             style: TextStyle(
-                                fontSize: 22,
+                                fontSize: 21,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
@@ -76,6 +119,7 @@ class _PropertysellState extends State<Propertysell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: nameController,
                           decoration: InputDecoration(
                               hintText: 'Name',
                               label: const Text(
@@ -94,6 +138,8 @@ class _PropertysellState extends State<Propertysell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: phoneController,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
                               label: const Text(
@@ -112,10 +158,12 @@ class _PropertysellState extends State<Propertysell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: cnicController,
                           decoration: InputDecoration(
                               hintText: 'CNIC (ID Card Number)',
                               label: const Text(
-                                'CNIC',
+                                'CNICsss',
                                 style: TextStyle(color: Colors.black),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -130,13 +178,13 @@ class _PropertysellState extends State<Propertysell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
-                          minLines: 2,
-                          maxLines: 3,
+                          controller: officeController,
+
                           decoration: InputDecoration(
                               hintText:
-                                  'If you are a dealer than fill complete name & address of your office ',
+                                  'Business Address',
                               label: const Text(
-                                'Office',
+                                'Business Address',
                                 style: TextStyle(color: Colors.black),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -148,14 +196,34 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       //
                       //
-
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: officeController,
+
                           decoration: InputDecoration(
-                              hintText: 'Comission Amount of Dealer',
+                              hintText:
+                              'Office Name',
                               label: const Text(
-                                'Comission Amount',
+                                'Office Name',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                      ),
+
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: commissionController,
+                          decoration: InputDecoration(
+                              hintText: 'Commission Amount of Dealer',
+                              label: const Text(
+                                'Commission Amount',
                                 style: TextStyle(color: Colors.black),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -171,6 +239,8 @@ class _PropertysellState extends State<Propertysell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: propertyPriceController,
                           decoration: InputDecoration(
                               hintText:
                                   'Fill the final price of property that you want to sell out',
@@ -187,24 +257,171 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       //
                       //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText:
-                                  'Fill complete location of property that you want to sell out',
-                              label: const Text(
-                                'Property Location',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                          minLines: 5,
-                          maxLines: 20,
+                      //
+                      //
+                      //       Container of Address............
+                      //
+                  //
+                  //
+                  //
+                  //
+                      Container(width: 300,height: 10,
+                        decoration: BoxDecoration(color: Colors.white30,borderRadius: BorderRadius.circular(10)),
+                      child: Column(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'Plot Number',
+                                label: const Text(
+                                  'Plot Number',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
                         ),
+                        //
+                        //
+                        //
+                        //
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'Block',
+                                label: const Text(
+                                  'Block',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                        //
+                        //
+                        //
+                        //
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'Sector',
+                                label: const Text(
+                                  'Sector',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                        //
+                        //
+                        //
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'Phase',
+                                label: const Text(
+                                  'Phase',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                        //
+                        //
+                        //
+                        //
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'Society Name',
+                                label: const Text(
+                                  'Society Name',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                        //
+                        //
+                        //
+                        //
+
+                        //
+                        //
+                        //
+                        //
+                        Padding(
+                          padding: const EdgeInsets.all(15.0),
+                          child: TextField(
+                            keyboardType: TextInputType.number,
+                            controller: propertyPriceController,
+                            decoration: InputDecoration(
+                                hintText:
+                                'District',
+                                label: const Text(
+                                  'District',
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                      ],
                       ),
+                      ),
+                      // Padding(
+                      //   padding: const EdgeInsets.all(15.0),
+                      //   child: TextField(
+                      //     controller: propertyLocationController,
+                      //     decoration: InputDecoration(
+                      //         hintText:
+                      //             'Fill complete location of property that you want to sell out',
+                      //         label: const Text(
+                      //           'Property Location',
+                      //           style: TextStyle(color: Colors.black),
+                      //         ),
+                      //         enabledBorder: OutlineInputBorder(
+                      //             borderRadius: BorderRadius.circular(10)),
+                      //         focusedBorder: const OutlineInputBorder(
+                      //             borderSide: BorderSide(color: Colors.black))),
+                      //     minLines: 5,
+                      //     maxLines: 20,
+                      //   ),
+                      // ),
                       //
                       //
                       //
@@ -222,14 +439,21 @@ class _PropertysellState extends State<Propertysell> {
                             Container(
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20)),
+                                  border: Border.all(),
+                                  borderRadius: BorderRadius.circular(10)),
                               height: 180,
                               width: 230,
                               child: SfSignaturePad(
+                                onDrawEnd: ()async {
+                                  // isDrawEnd = true;
+                                  ui.Image image = await _signaturePadKey.currentState!.toImage();
+signatureImage = image;
+                                  print('is draw end executed');
+                                },
                                 minimumStrokeWidth: 1,
                                 maximumStrokeWidth: 3,
                                 strokeColor: Colors.blue,
-                                key: _signaturePadKey1,
+                                key: _signaturePadKey,
                                 backgroundColor: Colors.grey[200],
                               ),
                             ),
@@ -238,21 +462,15 @@ class _PropertysellState extends State<Propertysell> {
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  ElevatedButton(
-                                      child:
-                                          const Text('Save Signature As Image'),
-                                      onPressed: () async {
-                                        ui.Image image = await _signaturePadKey
-                                            .currentState!
-                                            .toImage();
-                                      }),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: ElevatedButton(
+                                    child: TextButton(
                                         child: const Text("Clear"),
                                         onPressed: () async {
-                                          _signaturePadKey1.currentState!
+                                          print('signature cleared');
+                                          _signaturePadKey.currentState!
                                               .clear();
+                                          signatureImage= null;
                                         }),
                                   ),
                                 ],
@@ -283,12 +501,15 @@ class _PropertysellState extends State<Propertysell> {
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Center(
-                          child: Text(
-                            "Buyer Information",
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                          child: Opacity(
+                            opacity: 0.3,
+                            child: Text(
+                              "Buyer Information",
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
                           ),
                         ),
                       ),
@@ -296,17 +517,22 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Full Name',
-                              label: const Text(
-                                'Full Name',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Full Name',
+                                // label: const Text(
+                                //   'Full Name',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -314,17 +540,22 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Phone Number',
-                              label: const Text(
-                                'Phone Number ',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Phone Number',
+                                // label: const Text(
+                                //   'Phone Number ',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -332,17 +563,22 @@ class _PropertysellState extends State<Propertysell> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'CNIC (ID Card Number)',
-                              label: const Text(
-                                'CNIC',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'CNIC (ID Card Number)',
+                                // label: const Text(
+                                //   'CNIC',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -362,56 +598,72 @@ class _PropertysellState extends State<Propertysell> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            // Container(
+                            //   clipBehavior: Clip.antiAlias,
+                            //   decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(20)),
+                            //   height: 180,
+                            //   width: 230,
+                            //   child: SfSignaturePad(
+                            //     minimumStrokeWidth: 1,
+                            //     maximumStrokeWidth: 3,
+                            //     strokeColor: Colors.blue,
+                            //     key: _signaturePadKey,
+                            //     backgroundColor: Colors.grey[200],
+                            //   ),
+                            // ),
                             Container(
                               clipBehavior: Clip.antiAlias,
                               decoration: BoxDecoration(
+                                  color: Colors.black.withOpacity(0.1),
+                                  border: Border.all(),
                                   borderRadius: BorderRadius.circular(20)),
                               height: 180,
                               width: 230,
-                              child: SfSignaturePad(
-                                minimumStrokeWidth: 1,
-                                maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
-                                key: _signaturePadKey,
-                                backgroundColor: Colors.grey[200],
-                              ),
                             ),
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  ElevatedButton(
-                                      child:
-                                          const Text('Save Signature As Image'),
-                                      onPressed: () async {
-                                        ui.Image image = await _signaturePadKey
-                                            .currentState!
-                                            .toImage();
-                                      }),
+                                  Opacity(
+                                    opacity: 0.3,
+                                    child: TextButton(
+                                        child: const Text('Save As Image'),
+                                        onPressed: () async {
+                                          ui.Image image =
+                                              await _signaturePadKey
+                                                  .currentState!
+                                                  .toImage();
+                                        }),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: ElevatedButton(
-                                        child: const Text("Clear"),
-                                        onPressed: () async {
-                                          _signaturePadKey.currentState!
-                                              .clear();
-                                        }),
+                                    child: Opacity(
+                                      opacity: 0.3,
+                                      child: TextButton(
+                                          child: const Text("Clear"),
+                                          onPressed: () async {
+                                            _signaturePadKey.currentState!
+                                                .clear();
+                                          }),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 25),
                           ],
                         ),
                       ),
-                    ],
+                    ]) ,
+
                   ),
                 ),
               ),
-            )
-          ],
+  ],),
         ),
-      ),
+
       //
       //
       //
@@ -424,12 +676,68 @@ class _PropertysellState extends State<Propertysell> {
         elevation: 10,
         backgroundColor: ThemeColors.primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: () {},
-        label: const Icon(
-          Icons.remove_red_eye_outlined,
-          color: Colors.white,
+        onPressed: () {
+//           final currentDate = DateTime.now();
+// final formattedDate = DateFormat('yyyy-MM-dd').format(currentDate);
+// print('${formattedDate}');
+//           print('${DateTime.now()}');
+          print('executing floating action button');
+          if (nameController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Name is required')));
+          } else if (phoneController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Phone Number is required')));
+          } else if (cnicController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('CNIC is required')));
+          } else if (officeController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Office section is required')));
+          } else if (commissionController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Add Commission')));
+          } else if (propertyPriceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Add Price')));
+          } else if (propertyLocationController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Location is required')));
+          } else if (signatureImage == null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Signature is required')));
+          } else {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            print('go to new screen');
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => RealEstateRentConfirmationPage(
+                addressOfSeller: officeController.text.toString(),
+                phoneOfSeller: phoneController.text.toString(),
+                nameOfSeller: nameController.text.toString(),
+                locationOfProperty: propertyLocationController.text.toString(),
+                currentDate:DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
+                signatureImage: signatureImage,
+                cnicOfSeller: cnicController.text.toString(),
+              ),
+//
+            ));
+          }
+        },
+        label: const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
+        icon: const Text(
+          'Preview',
+          style: TextStyle(color: Colors.white),
         ),
-        icon: const Text('Preview'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

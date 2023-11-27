@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:wizstamp/pages/signup.dart';
+import 'package:wizstamp/pages/track.dart';
 // import 'package:carousel_slider/carousel_slider.dart';
 import 'package:wizstamp/utils/theme.dart';
 
-import '../utils/api.dart';
-import 'create.dart';
+import '../../utils/api.dart';
+// import '../create.dart';
 import 'brand.dart';
-
+import 'create.dart';
 import 'olddoc.dart';
 
-import 'signup.dart';
-import 'track.dart';
+// import '../olddoc.dart';
+
+// import '../signup.dart';
+// import '../track.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -70,9 +74,12 @@ class _HomeState extends State<Home> {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.white
+        ),
           title: const Text(
             'Wiz Stamp',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
           ),
           centerTitle: true,
           backgroundColor: ThemeColors.primaryColor),

@@ -43,9 +43,10 @@ class Create extends StatelessWidget {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text(
           'Create Documents',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 94, 2, 254),
       ),

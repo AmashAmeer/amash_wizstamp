@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wizstamp/pages/signin.dart';
 
-import '../utils/theme.dart';
-import 'signin.dart';
+import '../../utils/theme.dart';
 
 class Signupp extends StatelessWidget {
   const Signupp({super.key});

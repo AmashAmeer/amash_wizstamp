@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/theme.dart';
+import '../../utils/theme.dart';
 
 class Olddoc extends StatelessWidget {
   Olddoc({super.key});
@@ -101,9 +101,12 @@ class Olddoc extends StatelessWidget {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
+        iconTheme: IconThemeData(
+        color: Colors.white
+        ),
         title: const Text(
           'Old Documents',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
         ),
         centerTitle: true,
         backgroundColor: ThemeColors.primaryColor,

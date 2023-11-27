@@ -1,3 +1,5 @@
+
+
 name: wizstamp
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
@@ -39,7 +41,19 @@ dependencies:
   http: ^1.1.0
   signature: ^5.4.0
   syncfusion_flutter_signaturepad: ^23.2.4
+  dotted_border: ^2.1.0
+  open_file: ^3.3.2
+  path_provider: ^2.1.1
+  flutter_share: ^2.0.0
+  syncfusion_flutter_pdf: ^23.2.4
+  screenshot: ^2.1.0
+  intl: ^0.18.1
 
+
+
+
+
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+import 'package:wizstamp/pages/electronics_confirmation_page.dart';
 import '../utils/theme.dart';
+import 'electronics_confirmation_design.dart';
 
 class Electronic extends StatefulWidget {
   const Electronic({super.key});
@@ -12,18 +15,32 @@ class Electronic extends StatefulWidget {
 
 class _ElectronicState extends State<Electronic> {
   String signature1 = '';
-
+  ui.Image? signatureImage;
   String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
+
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cnicController = TextEditingController();
+  TextEditingController nameOfDeviceController = TextEditingController();
+  TextEditingController modelofDeviceController = TextEditingController();
+  TextEditingController priceofDeviceController = TextEditingController();
+  TextEditingController guaranteeofDeviceController = TextEditingController();
+  TextEditingController nameofShopController = TextEditingController();
+  TextEditingController addressofShopController = TextEditingController();
+  TextEditingController conditionofDeviceController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
+        iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
           'Electronic Accessries Docs',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 94, 2, 254),
       ),
@@ -72,6 +89,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: nameController,
                           decoration: InputDecoration(
                               hintText: 'Seller Name',
                               label: const Text(
@@ -90,6 +108,9 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+
+                          controller: phoneController,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
                               label: const Text(
@@ -108,6 +129,8 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: cnicController,
                           decoration: InputDecoration(
                               hintText: 'CNIC (ID Card Number)',
                               label: const Text(
@@ -128,6 +151,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: nameOfDeviceController,
                           decoration: InputDecoration(
                               hintText: "Fill Device name",
                               label: const Text(
@@ -147,6 +171,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: modelofDeviceController,
                           decoration: InputDecoration(
                               hintText: "Device Model",
                               label: const Text(
@@ -165,6 +190,8 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: priceofDeviceController,
                           decoration: InputDecoration(
                               hintText: 'Final Price',
                               label: const Text(
@@ -183,6 +210,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: guaranteeofDeviceController,
                           decoration: InputDecoration(
                               hintText: 'Fill Guarantee Duration',
                               label: const Text(
@@ -201,6 +229,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: nameofShopController,
                           decoration: InputDecoration(
                               hintText: 'Shope Name',
                               label: const Text(
@@ -220,6 +249,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: addressofShopController,
                           decoration: InputDecoration(
                               hintText: 'Shope Address',
                               label: const Text(
@@ -240,6 +270,7 @@ class _ElectronicState extends State<Electronic> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: conditionofDeviceController,
                           decoration: InputDecoration(
                               hintText: 'Describe Current Condition Of Device ',
                               label: const Text(
@@ -280,6 +311,14 @@ class _ElectronicState extends State<Electronic> {
                                 strokeColor: Colors.blue,
                                 key: _signaturePadKey,
                                 backgroundColor: Colors.grey[200],
+                                onDrawEnd: () async {
+                                  // isDrawEnd = true;
+                                  ui.Image image = await _signaturePadKey
+                                      .currentState!
+                                      .toImage();
+                                  signatureImage = image;
+                                  print('is draw end executed');
+                                },
                               ),
                             ),
                             Padding(
@@ -287,21 +326,14 @@ class _ElectronicState extends State<Electronic> {
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  ElevatedButton(
-                                      child:
-                                          const Text('Save Signature As Image'),
-                                      onPressed: () async {
-                                        ui.Image image = await _signaturePadKey
-                                            .currentState!
-                                            .toImage();
-                                      }),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: ElevatedButton(
+                                    child: TextButton(
                                         child: const Text("Clear"),
                                         onPressed: () async {
                                           _signaturePadKey.currentState!
                                               .clear();
+                                          signatureImage = null;
                                         }),
                                   ),
                                 ],
@@ -329,15 +361,19 @@ class _ElectronicState extends State<Electronic> {
                       //
                       //
                       //
+                      //
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Center(
-                          child: Text(
-                            "Buyer Information",
-                            style: TextStyle(
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black),
+                          child: Opacity(
+                            opacity: 0.3,
+                            child: Text(
+                              "Buyer Information",
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                            ),
                           ),
                         ),
                       ),
@@ -345,17 +381,22 @@ class _ElectronicState extends State<Electronic> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Full Name',
-                              label: const Text(
-                                'Full Name',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Full Name',
+                                // label: const Text(
+                                //   'Full Name',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -363,17 +404,22 @@ class _ElectronicState extends State<Electronic> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'Phone Number',
-                              label: const Text(
-                                'Phone Number ',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Phone Number',
+                                // label: const Text(
+                                //   'Phone Number ',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -381,17 +427,22 @@ class _ElectronicState extends State<Electronic> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          decoration: InputDecoration(
-                              hintText: 'CNIC (ID Card Number)',
-                              label: const Text(
-                                'CNIC',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'CNIC (ID Card Number)',
+                                // label: const Text(
+                                //   'CNIC',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
                       ),
                       //
@@ -411,18 +462,30 @@ class _ElectronicState extends State<Electronic> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: 180,
-                              width: 230,
-                              child: SfSignaturePad(
-                                minimumStrokeWidth: 1,
-                                maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
-                                key: _signaturePadKey1,
-                                backgroundColor: Colors.grey[200],
+                            // Container(
+                            //   clipBehavior: Clip.antiAlias,
+                            //   decoration: BoxDecoration(
+                            //       borderRadius: BorderRadius.circular(20)),
+                            //   height: 180,
+                            //   width: 230,
+                            //   child: SfSignaturePad(
+                            //     minimumStrokeWidth: 1,
+                            //     maximumStrokeWidth: 3,
+                            //     strokeColor: Colors.blue,
+                            //     key: _signaturePadKey,
+                            //     backgroundColor: Colors.grey[200],
+                            //   ),
+                            // ),
+                            Opacity(
+                              opacity: 0.3,
+                              child: Container(
+                                clipBehavior: Clip.antiAlias,
+                                decoration: BoxDecoration(
+                                    color: Colors.black.withOpacity(0.1),
+                                    border: Border.all(),
+                                    borderRadius: BorderRadius.circular(20)),
+                                height: 180,
+                                width: 230,
                               ),
                             ),
                             Padding(
@@ -430,26 +493,33 @@ class _ElectronicState extends State<Electronic> {
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  ElevatedButton(
-                                      child:
-                                          const Text('Save Signature As Image'),
-                                      onPressed: () async {
-                                        ui.Image image = await _signaturePadKey
-                                            .currentState!
-                                            .toImage();
-                                      }),
+                                  Opacity(
+                                    opacity: 0.3,
+                                    child: TextButton(
+                                        child: const Text('Save As Image'),
+                                        onPressed: () async {
+                                          ui.Image image =
+                                              await _signaturePadKey
+                                                  .currentState!
+                                                  .toImage();
+                                        }),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
-                                    child: ElevatedButton(
-                                        child: const Text("Clear"),
-                                        onPressed: () async {
-                                          _signaturePadKey1.currentState!
-                                              .clear();
-                                        }),
+                                    child: Opacity(
+                                      opacity: 0.3,
+                                      child: TextButton(
+                                          child: const Text("Clear"),
+                                          onPressed: () async {
+                                            _signaturePadKey.currentState!
+                                                .clear();
+                                          }),
+                                    ),
                                   ),
                                 ],
                               ),
                             ),
+                            const SizedBox(height: 25),
                           ],
                         ),
                       ),
@@ -473,12 +543,72 @@ class _ElectronicState extends State<Electronic> {
         elevation: 10,
         backgroundColor: ThemeColors.primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        onPressed: () {},
+        onPressed: () {
+          if (nameController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Seller Name is required')));
+          } else if (phoneController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Phone No is required')));
+          } else if (cnicController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('CNIC is required')));
+          } else if (nameOfDeviceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Device Name is required')));
+          } else if (modelofDeviceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Device Model is required')));
+          } else if (priceofDeviceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Device Price is required')));
+          } else if (guaranteeofDeviceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Enter Guarantee period')));
+          } else if (nameofShopController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Shop Name is required')));
+          } else if (addressofShopController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Shop Address is required')));
+          } else if (conditionofDeviceController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Device condition is required')));
+          } else if (signatureImage == null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Signature is required')));
+          } else {
+            print('Navigating to result screen');
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => ElectronicsConfirmationPage(
+                      name: nameController.text.toString(),
+                      phoneNumber: phoneController.text.toString(),
+                      cnic: cnicController.text.toString(),
+                      deviceName: nameOfDeviceController.text.toString(),
+                      modelOfDevice: modelofDeviceController.text.toString(),
+                      priceOfDevice: priceofDeviceController.text.toString(),
+                      guaranteeOfDevice:
+                          guaranteeofDeviceController.text.toString(),
+                      addressOfShop: addressofShopController.text.toString(),
+                      conditionOfDevice:
+                          conditionofDeviceController.text.toString(),
+                      nameOfShop: nameofShopController.text.toString(),
+                  currentDate: DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                  signatureImage:signatureImage ,
+                    )));
+          }
+        },
         label: const Icon(
           Icons.remove_red_eye_outlined,
           color: Colors.white,
         ),
-        icon: const Text('Preview'),
+        icon: const Text(
+          'Preview',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
