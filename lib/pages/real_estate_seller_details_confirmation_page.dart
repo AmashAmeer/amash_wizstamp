@@ -8,45 +8,28 @@ import 'package:flutter/material.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:screenshot/screenshot.dart';
-import 'package:wizstamp/pages/home.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_result_page.dart';
 
-class ElectronicsFinalResultPage extends StatelessWidget {
-  final String phoneNumber;
-  final String cnic;
-  final String deviceName;
-  final String modelOfDevice;
-  final String priceOfDevice;
-  final String guaranteeOfDevice;
-  final String nameOfShop;
-  final String addressOfShop;
-  final String conditionOfDevice;
-  final String name;
-  final String currentDate;
+import 'home.dart';
+
+class RealEstateSellerResultPage extends StatelessWidget {
+  final String addressOfSeller;
+  final String nameOfSeller;
+  final String phoneOfSeller;
+  // final String currentDate;
+  final String locationOfProperty;
   final ui.Image? signatureImage;
-
-  ScreenshotController screenshotController = ScreenshotController();
-
-  ElectronicsFinalResultPage({
-    required this.name,
-    required this.phoneNumber,
-    required this.cnic,
-    required this.deviceName,
-    required this.modelOfDevice,
-    required this.priceOfDevice,
-    required this.guaranteeOfDevice,
-    required this.addressOfShop,
-    required this.conditionOfDevice,
-    required this.nameOfShop,
-    required this.currentDate,
+  final String cnicOfSeller;
+  RealEstateSellerResultPage({
+    required this.addressOfSeller,
+    required this.nameOfSeller,
+    required this.phoneOfSeller,
+    // required this.currentDate,
+    required this.locationOfProperty,
     required this.signatureImage,
+    required this.cnicOfSeller,
   });
-  // ui.Image? signatureImage;
-  Future<Uint8List> encodeImage(ui.Image image) async {
-    final ByteData? byteData =
-        await image.toByteData(format: ui.ImageByteFormat.png);
-    return Uint8List.view(byteData!.buffer);
-  }
+
+  final screenshotController = ScreenshotController();
 
   Future<void> _captureAndSave() async {
     print('capture and save is running');
@@ -67,18 +50,19 @@ class ElectronicsFinalResultPage extends StatelessWidget {
     }
   }
 
+  Future<Uint8List> encodeImage(ui.Image image) async {
+    final ByteData? byteData =
+        await image.toByteData(format: ui.ImageByteFormat.png);
+    return Uint8List.view(byteData!.buffer);
+  }
+
   @override
   Widget build(BuildContext context) {
+    print('image is ${signatureImage}');
     final size = MediaQuery.of(context).size;
     return WillPopScope(
       onWillPop: () async {
         return true;
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (context) => Home(),
-        //   ),
-        // );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -86,19 +70,26 @@ class ElectronicsFinalResultPage extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
+                  // _createPDF();
                   _captureAndSave();
                 },
-                icon: const Icon(Icons.download)),
-            IconButton(onPressed: () {}, icon: const Icon(Icons.share))
+                icon: const Icon(
+                  Icons.download,
+                  color: Colors.black,
+                )),
+            IconButton(
+                onPressed: () {
+                  //share the document
+                  // _shareDocument();
+                },
+                icon: const Icon(Icons.share))
           ],
         ),
         body: Padding(
           padding: EdgeInsets.only(
-            left: size.width * 0.015,
-            right: size.width * 0.015,
-            bottom: size.width * 0.015,
-            // top: size.width * 0.1,
-          ),
+              left: size.width * 0.015,
+              right: size.width * 0.015,
+              bottom: size.width * 0.015),
           child: Screenshot(
             controller: screenshotController,
             child: Container(
@@ -106,18 +97,18 @@ class ElectronicsFinalResultPage extends StatelessWidget {
               height: double.infinity,
               width: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
+                color: Colors.white,
                 border: Border.all(
                   width: 3,
                 ),
               ),
               child: SingleChildScrollView(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      'Electronic Assecories Document',
+                      'Receipt',
                       style: TextStyle(
                           fontSize: size.width * 0.05,
                           fontWeight: FontWeight.bold),
@@ -132,7 +123,13 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     ///above responsive
                     ///
                     //
-                    reUsableData('Date :', currentDate, size), //
+                    Row(
+                      children: [
+                        // reUsableData('Date :', currentDate, size),
+                        SizedBox(width: size.width * 0.16),
+                        reUsableData('Receipt #:', 'receipt here', size),
+                      ],
+                    ), //
                     //
                     ///
                     /// landlord and tenant table
@@ -143,14 +140,14 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     SizedBox(height: size.width * 0.03),
 
                     const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Text(
-                          'Seller',
+                          'LandLord',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         Text(
-                          'Buyer',
+                          'Tenant',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       ],
@@ -164,12 +161,12 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     //
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         DottedBorder(
                           padding: EdgeInsets.all(size.width * 0.015),
                           child: SizedBox(
-                            height: size.height * 0.28,
+                            height: size.height * 0.21,
                             width: size.width * 0.42,
                             child: Column(
                               children: [
@@ -196,7 +193,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                           hintStyle: TextStyle(
                                               fontSize: size.width * 0.02),
                                           hintMaxLines: 4,
-                                          hintText: addressOfShop,
+                                          hintText: addressOfSeller,
                                           contentPadding: EdgeInsets.only(
                                               bottom: size.width * 0.032,
                                               left: 5),
@@ -216,7 +213,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: SizedBox(
-                                        height: size.height * 0.06,
+                                        height: size.height * 0.04,
                                         child: TextField(
                                           textAlignVertical:
                                               TextAlignVertical.center,
@@ -229,152 +226,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                             ),
                                             hintStyle: TextStyle(
                                                 fontSize: size.width * 0.03),
-                                            hintText: name,
-                                            contentPadding: EdgeInsets.only(
-                                                bottom: size.height * 0.002,
-                                                left: 5),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'CNIC:',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: size.width * 0.03),
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: size.height * 0.06,
-                                        child: TextField(
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          readOnly: true,
-                                          decoration: InputDecoration(
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black.withOpacity(
-                                                      0.5)), // Change color as needed
-                                            ),
-                                            hintStyle: TextStyle(
-                                                fontSize: size.width * 0.03),
-                                            hintText: cnic,
-                                            contentPadding: EdgeInsets.only(
-                                                bottom: size.height * 0.002,
-                                                left: 5),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Phone:',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: size.width * 0.03),
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: size.height * 0.06,
-                                        child: TextField(
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          readOnly: true,
-                                          decoration: InputDecoration(
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black.withOpacity(
-                                                      0.5)), // Change color as needed
-                                            ),
-                                            hintStyle: TextStyle(
-                                                fontSize: size.width * 0.03),
-                                            hintText: phoneNumber,
-                                            contentPadding: EdgeInsets.only(
-                                                bottom: size.height * 0.002,
-                                                left: 5),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        DottedBorder(
-                          padding: EdgeInsets.all(size.width * 0.015),
-                          child: SizedBox(
-                            height: size.height * 0.28,
-                            width: size.width * 0.42,
-                            child: Column(
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Address:',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: size.width * 0.03),
-                                    ),
-                                    Expanded(
-                                      child: TextField(
-                                        textAlignVertical:
-                                            TextAlignVertical.center,
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(
-                                                color: Colors.black.withOpacity(
-                                                    0.5)), // Change color as needed
-                                          ),
-                                          hintStyle: TextStyle(
-                                              fontSize: size.width * 0.02),
-                                          hintMaxLines: 4,
-                                          hintText: 'addressOfBuyer',
-                                          contentPadding: EdgeInsets.only(
-                                              bottom: size.width * 0.032,
-                                              left: 5),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      'Name:',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: size.width * 0.03),
-                                    ),
-                                    Expanded(
-                                      child: SizedBox(
-                                        height: size.height * 0.06,
-                                        child: TextField(
-                                          textAlignVertical:
-                                              TextAlignVertical.center,
-                                          readOnly: true,
-                                          decoration: InputDecoration(
-                                            focusedBorder: UnderlineInputBorder(
-                                              borderSide: BorderSide(
-                                                  color: Colors.black.withOpacity(
-                                                      0.5)), // Change color as needed
-                                            ),
-                                            hintStyle: TextStyle(
-                                                fontSize: size.width * 0.03),
-                                            hintText: 'nameOfBuyer',
+                                            hintText: nameOfSeller,
                                             contentPadding: EdgeInsets.only(
                                                 bottom: size.height * 0.016,
                                                 left: 5),
@@ -395,7 +247,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: SizedBox(
-                                        height: size.height * 0.06,
+                                        height: size.height * 0.04,
                                         child: TextField(
                                           textAlignVertical:
                                               TextAlignVertical.center,
@@ -408,7 +260,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                             ),
                                             hintStyle: TextStyle(
                                                 fontSize: size.width * 0.03),
-                                            hintText: 'cnic',
+                                            hintText: cnicOfSeller,
                                             contentPadding: EdgeInsets.only(
                                                 bottom: size.height * 0.018,
                                                 left: 5),
@@ -429,7 +281,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: SizedBox(
-                                        height: size.height * 0.06,
+                                        height: size.height * 0.04,
                                         child: TextField(
                                           textAlignVertical:
                                               TextAlignVertical.center,
@@ -442,7 +294,152 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                             ),
                                             hintStyle: TextStyle(
                                                 fontSize: size.width * 0.03),
-                                            hintText: 'phone',
+                                            hintText: phoneOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                bottom: size.height * 0.018,
+                                                left: 5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        DottedBorder(
+                          padding: EdgeInsets.all(size.width * 0.015),
+                          child: SizedBox(
+                            height: size.height * 0.21,
+                            width: size.width * 0.42,
+                            child: Column(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Address:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                    Expanded(
+                                      child: TextField(
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black.withOpacity(
+                                                    0.5)), // Change color as needed
+                                          ),
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.02),
+                                          hintMaxLines: 4,
+                                          hintText: addressOfSeller,
+                                          contentPadding: EdgeInsets.only(
+                                              bottom: size.width * 0.032,
+                                              left: 5),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Name:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: size.height * 0.04,
+                                        child: TextField(
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black.withOpacity(
+                                                      0.5)), // Change color as needed
+                                            ),
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.03),
+                                            hintText: nameOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                bottom: size.height * 0.016,
+                                                left: 5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'CNIC:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: size.height * 0.04,
+                                        child: TextField(
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black.withOpacity(
+                                                      0.5)), // Change color as needed
+                                            ),
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.03),
+                                            hintText: cnicOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                bottom: size.height * 0.018,
+                                                left: 5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      'Phone:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(
+                                        height: size.height * 0.04,
+                                        child: TextField(
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(
+                                                  color: Colors.black.withOpacity(
+                                                      0.5)), // Change color as needed
+                                            ),
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.03),
+                                            hintText: phoneOfSeller,
                                             contentPadding: EdgeInsets.only(
                                                 bottom: size.height * 0.018,
                                                 left: 5),
@@ -463,14 +460,11 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     /// mid part
                     ///
                     //
-                    // SizedBox(height: size.height*0.01,),
-                    reUsableSizedBox('Device Name :', deviceName, size),
+                    reUsableSizedBox('Received from :', 'payment here', size),
 
-                    reUsableSizedBox('Device Model :', modelOfDevice, size),
+                    reUsableSizedBox('The Payment of \$', 'payment here', size),
 
-                    reUsableSizedBox(
-                        'Guarantee Duration :', guaranteeOfDevice, size),
-                    reUsableSizedBox('Final Price :', priceOfDevice, size),
+                    reUsableSizedBox('For Payment of', 'payment here', size),
 
                     //
                     ///
@@ -486,7 +480,158 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     ///
                     ///
                     ///
+                    //
+                    SizedBox(
+                      height: size.width * 0.02,
+                    ),
+                    DottedBorder(
+                      child: Column(
+                        children: [
+                          reUsableContainer(
+                              'Total amount to be', 'amount here', size),
+                          reUsableContainer(
+                              'Amount received', 'amount here', size),
+                          reUsableContainer('Balance Due', 'Amount here', size),
 
+                          SizedBox(height: size.width * 0.03),
+                          //
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          //
+
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: size.width * 0.05,
+                                width: size.width * 0.5,
+                                child: reusableTextField(
+                                    'Received by :', 'name here ', size),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.02,
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  '[ ]Cash',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: size.width * 0.03),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.width * 0.02,
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: size.width * 0.06,
+                                width: size.width * 0.6,
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  // textBaseline: TextBaseline.alphabetic,
+                                  children: [
+                                    Text(
+                                      'Address :',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: size.width * 0.023),
+                                    ),
+                                    Expanded(
+                                      child: TextField(
+                                        // textAlignVertical: TextAlignVertical.center,
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black.withOpacity(
+                                                    0.5)), // Change color as needed
+                                          ),
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.02),
+                                          hintText:
+                                              'House 07 street 01 staff colony central jail kot lakhpat lahore house 0333 hsods  dsh dfd ',
+                                          hintMaxLines: 4,
+                                          contentPadding: EdgeInsets.only(
+                                              bottom: size.width * 0.06,
+                                              left: 5),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                width: size.width * 0.001,
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  '[ ]Cheque No',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: size.width * 0.02),
+                                ),
+                              ),
+                              Expanded(
+                                  child: SizedBox(
+                                      height: size.width * 0.05,
+                                      width: size.width * 0.5,
+                                      child: TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Colors.black.withOpacity(
+                                                    0.5)), // Change color as needed
+                                          ),
+                                          hintText: '9876543210123',
+                                          contentPadding: EdgeInsets.only(
+                                              bottom: size.width * 0.04,
+                                              left: 5),
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.018),
+                                        ),
+                                      ))),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.width * 0.02,
+                          ),
+
+                          Row(
+                            children: [
+                              SizedBox(
+                                height: size.width * 0.05,
+                                width: size.width * 0.5,
+                                child: reusableTextField(
+                                    'Phone :', '023038923903', size),
+                              ),
+                              SizedBox(
+                                child: Text(
+                                  '[ ] Money Order',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: size.width * 0.02),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: size.width * 0.02,
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    SizedBox(height: size.width * 0.02),
+                    //
                     ///
                     ///
                     ///
@@ -495,7 +640,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     ///
                     //
                     Text(
-                      'Device Condition ',
+                      'Description of Property',
                       style: TextStyle(
                           fontSize: size.width * 0.04,
                           fontWeight: FontWeight.bold),
@@ -505,25 +650,26 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                       child: TextField(
                         readOnly: true,
                         decoration: InputDecoration(
-                          hintMaxLines: 2,
+                          hintMaxLines: 4,
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                                 color: Colors.black.withOpacity(
                                     0.5)), // Change color as needed
                           ),
-                          hintText: conditionOfDevice,
+                          hintText:
+                              'description of the thing lets say description Description here a quick brown fox jumps over the lazy dog that is a sentence containing all alphabets of english which is we used to practice',
                           hintStyle: TextStyle(fontSize: size.width * 0.03),
                         ),
                       ),
                     ),
 
-                    // SizedBox(height: size.width * 0.02),
+                    SizedBox(height: size.width * 0.02),
 
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Seller Signature :',
+                          'Signature :',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: size.height * 0.02,
@@ -537,38 +683,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                               // If the Future is complete, display the Image widget
                               return Image.memory(
                                 snapshot.data!,
-                                height: 60,
-                                width: 60,
-                              );
-                            } else {
-                              // Display a placeholder or loading indicator while the Future is in progress
-                              return const CircularProgressIndicator();
-                            }
-                          },
-                        ),
-                      ],
-                    ),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Buyer Signature :',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: size.height * 0.02,
-                          ),
-                        ),
-                        FutureBuilder<Uint8List>(
-                          future: encodeImage(signatureImage!),
-                          builder: (context, snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.done) {
-                              // If the Future is complete, display the Image widget
-                              return Image.memory(
-                                snapshot.data!,
-                                height: 60,
-                                width: 60,
+                                height: 90,
+                                width: 90,
                               );
                             } else {
                               // Display a placeholder or loading indicator while the Future is in progress
@@ -721,3 +837,58 @@ Widget reUsableData(String heading, hintText, Size size) {
 }
 
 // 700 lines of code
+
+
+
+
+
+
+
+
+
+//share document
+// void _shareDocument() async {
+//   print('share document running');
+//   final content = 'Document Details\n\n'
+//       'Name: $name\n'
+//       'Phone Number: $phoneNumber\n'
+//       'CNIC: $cnic\n'
+//       'Office: $office\n'
+//       'Commission Amount: $commissionAmount\n'
+//       'Price of Property: $priceOfProperty\n'
+//       'Location: $propertyLocation\n'
+//       'Signature: $signature';
+//   FlutterShare.share(title: 'Document', text: content);
+// }
+//
+// Future<void> _createPDF() async {
+//   print('create pdf is running');
+//   final content = 'Document Details\n\n'
+//       'Name: $name\n'
+//       'Phone Number: $phoneNumber\n'
+//       'CNIC: $cnic\n'
+//       'Office: $office\n'
+//       'Commission Amount: $commissionAmount\n'
+//       'Price of Property: $priceOfProperty\n'
+//       'Location: $propertyLocation\n'
+//       'Signature: $signature';
+//   PdfDocument pdfDocument = PdfDocument();
+//   final page = pdfDocument.pages.add();
+//   page.graphics.drawString(
+//     'Seller Document\n\n\n\n$content',
+//     PdfStandardFont(PdfFontFamily.helvetica, 19)
+//   );
+//
+//
+//   List<int> bytes = await pdfDocument.save();
+//   pdfDocument.dispose(); //release resources
+//   saveAndLaunchFile(bytes, 'Output.pdf');
+// }
+//
+// Future saveAndLaunchFile(List<int> bytes, String fileName) async {
+//   final path = (await getExternalStorageDirectory())?.path;
+//   final file = File('$path/$fileName');
+//   await file.writeAsBytes(bytes, flush: true);
+//   OpenFile.open('$path/$fileName');
+// }
+
