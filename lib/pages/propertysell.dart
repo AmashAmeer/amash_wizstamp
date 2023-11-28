@@ -24,7 +24,7 @@ class Propertysell extends StatefulWidget {
 class _PropertysellState extends State<Propertysell> {
   String signature1 = '';
   String signature2 = '';
-  ui.Image? signatureImage;
+  ui.Image? signatureImagevar;
   final GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   // final GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
@@ -37,7 +37,17 @@ class _PropertysellState extends State<Propertysell> {
   TextEditingController propertyPriceController = TextEditingController();
   TextEditingController propertyLocationController = TextEditingController();
   TextEditingController signatureController = TextEditingController();
-
+  TextEditingController bussiunessLocationController = TextEditingController();
+  //
+  //
+  //
+  TextEditingController plotController = TextEditingController();
+  TextEditingController blockController = TextEditingController();
+  TextEditingController sectorController = TextEditingController();
+  TextEditingController phaseController = TextEditingController();
+  TextEditingController societyController = TextEditingController();
+  TextEditingController cityRentController = TextEditingController();
+  TextEditingController zipcodeLocationController = TextEditingController();
 
 //   void saveImage() async {
 //     signatureImagePath = '';
@@ -89,580 +99,651 @@ class _PropertysellState extends State<Propertysell> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 578/ 100,
-                  child: Column(
-                    children: [
+                  child: Column(children: [
+                    //
+                    //
+                    //
+                    //
+                    //   Dealer information .....start..
+                    //
+                    //
+                    //
+                    //
+                    const Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Center(
+                        child: Text(
+                          "Seller/Dealer  information",
+                          style: TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                        ),
+                      ),
+                    ),
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                            hintText: 'Name',
+                            label: const Text(
+                              'Name',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: phoneController,
+                        decoration: InputDecoration(
+                            hintText: 'Phone Number',
+                            label: const Text(
+                              'Phone Number',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: cnicController,
+                        decoration: InputDecoration(
+                            hintText: 'CNIC (ID Card Number)',
+                            label: const Text(
+                              'CNIC',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        controller: bussiunessLocationController,
+                        decoration: InputDecoration(
+                            hintText: 'Business Address',
+                            label: const Text(
+                              'Business Address',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        controller: officeController,
+                        decoration: InputDecoration(
+                            hintText: 'Office Name',
+                            label: const Text(
+                              'Office Name',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
 
-                      //
-                      //
-                      //
-                      //
-                      //   Dealer information .....start..
-                      //
-                      //
-                      //
-                      //
-                       const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Center(
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: commissionController,
+                        decoration: InputDecoration(
+                            hintText: 'Commission Amount of Dealer',
+                            label: const Text(
+                              'Commission Amount',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        keyboardType: TextInputType.number,
+                        controller: propertyPriceController,
+                        decoration: InputDecoration(
+                            hintText:
+                                'Fill the final price of property that you want to sell out',
+                            label: const Text(
+                              'Final Price of Property',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //       Container of Address............
+                    //
+                    //
+                    //
+                    //
+                    //
+                    Container(
+                      width: 300,
+                      // height: 200,
+                      decoration: BoxDecoration(
+                          color: Colors.white30,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Column(
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.only(top: 25, bottom: 0),
+                            child: Text(
+                              'Property Location',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: ui.Color.fromARGB(255, 109, 102, 102)),
+                            ),
+                          ),
+
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          ///
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: plotController,
+                              decoration: InputDecoration(
+                                  hintText: 'Plot Number',
+                                  label: const Text(
+                                    'Plot Number',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: blockController,
+                              decoration: InputDecoration(
+                                  hintText: 'Block',
+                                  label: const Text(
+                                    'Block',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: sectorController,
+                              decoration: InputDecoration(
+                                  hintText: 'Sector',
+                                  label: const Text(
+                                    'Sector',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: phaseController,
+                              decoration: InputDecoration(
+                                  hintText: 'Phase',
+                                  label: const Text(
+                                    'Phase',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: societyController,
+                              decoration: InputDecoration(
+                                  hintText: 'Society Name',
+                                  label: const Text(
+                                    'Society Name',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          //
+
+                          //
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: cityRentController,
+                              decoration: InputDecoration(
+                                  hintText: 'City',
+                                  label: const Text(
+                                    'City',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                          //
+                          //
+                          //
+                          //
+                          Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: TextField(
+                              keyboardType: TextInputType.number,
+                              controller: zipcodeLocationController,
+                              decoration: InputDecoration(
+                                  hintText: 'Zip Code',
+                                  label: const Text(
+                                    'Zip Code',
+                                    style: TextStyle(color: Colors.black),
+                                  ),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)),
+                                  focusedBorder: const OutlineInputBorder(
+                                      borderSide:
+                                          BorderSide(color: Colors.black))),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.all(15.0),
+                    //   child: TextField(
+                    //     controller: propertyLocationController,
+                    //     decoration: InputDecoration(
+                    //         hintText:
+                    //             'Fill complete location of property that you want to sell out',
+                    //         label: const Text(
+                    //           'Property Location',
+                    //           style: TextStyle(color: Colors.black),
+                    //         ),
+                    //         enabledBorder: OutlineInputBorder(
+                    //             borderRadius: BorderRadius.circular(10)),
+                    //         focusedBorder: const OutlineInputBorder(
+                    //             borderSide: BorderSide(color: Colors.black))),
+                    //     minLines: 5,
+                    //     maxLines: 20,
+                    //   ),
+                    // ),
+                    //
+                    //
+                    //
+                    //
+                    // signature // // /////............
+                    //
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(10)),
+                            height: 180,
+                            width: 230,
+                            child: SfSignaturePad(
+                              onDrawEnd: () async {
+                                // isDrawEnd = true;
+                                ui.Image image = await _signaturePadKey
+                                    .currentState!
+                                    .toImage();
+                                setState(() {
+                                  signatureImagevar = image;
+                                });
+                                print('is draw end executed');
+                              },
+                              minimumStrokeWidth: 1,
+                              maximumStrokeWidth: 3,
+                              strokeColor: Colors.red,
+                              key: _signaturePadKey,
+                              backgroundColor: Colors.grey[200],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0, left: 0),
+                            child: Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: TextButton(
+                                      child: const Text(
+                                        "Clear",
+                                        style: TextStyle(color: Colors.red),
+                                      ),
+                                      onPressed: () async {
+                                        print('signature cleared');
+                                        _signaturePadKey.currentState!.clear();
+                                        signatureImagevar = null;
+                                      }),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //     Tenant information .....start....
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    const Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Center(
+                        child: Opacity(
+                          opacity: 0.3,
                           child: Text(
-                            "Seller/Dealer  information",
+                            "Buyer Information",
                             style: TextStyle(
-                                fontSize: 21,
+                                fontSize: 22,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
                         ),
                       ),
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Opacity(
+                        opacity: 0.3,
                         child: TextField(
-                          controller: nameController,
+                          readOnly: true,
                           decoration: InputDecoration(
-                              hintText: 'Name',
-                              label: const Text(
-                                'Name',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                              hintText: 'Full Name',
+                              // label: const Text(
+                              //   'Full Name',
+                              //   style: TextStyle(color: Colors.black),
+                              // ),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Opacity(
+                        opacity: 0.3,
                         child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: phoneController,
+                          readOnly: true,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
-                              label: const Text(
-                                'Phone Number',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                              // label: const Text(
+                              //   'Phone Number ',
+                              //   style: TextStyle(color: Colors.black),
+                              // ),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
+                    ),
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Opacity(
+                        opacity: 0.3,
                         child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: cnicController,
+                          readOnly: true,
                           decoration: InputDecoration(
                               hintText: 'CNIC (ID Card Number)',
-                              label: const Text(
-                                'CNICsss',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                              // label: const Text(
+                              //   'CNIC',
+                              //   style: TextStyle(color: Colors.black),
+                              // ),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
+                    ),
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Opacity(
+                        opacity: 0.3,
                         child: TextField(
-                          controller: officeController,
-
+                          readOnly: true,
                           decoration: InputDecoration(
-                              hintText:
-                                  'Business Address',
-                              label: const Text(
-                                'Business Address',
-                                style: TextStyle(color: Colors.black),
-                              ),
+                              hintText: 'Address',
+                              // label: const Text(
+                              //   'Full Name',
+                              //   style: TextStyle(color: Colors.black),
+                              // ),
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          controller: officeController,
-
-                          decoration: InputDecoration(
-                              hintText:
-                              'Office Name',
-                              label: const Text(
-                                'Office Name',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: commissionController,
-                          decoration: InputDecoration(
-                              hintText: 'Commission Amount of Dealer',
-                              label: const Text(
-                                'Commission Amount',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                        ),
-                      ),
-                      //
-                      //
-                      //
-
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          keyboardType: TextInputType.number,
-                          controller: propertyPriceController,
-                          decoration: InputDecoration(
-                              hintText:
-                                  'Fill the final price of property that you want to sell out',
-                              label: const Text(
-                                'Final Price of Property',
-                                style: TextStyle(color: Colors.black),
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                        ),
-                      ),
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //       Container of Address............
-                      //
-                  //
-                  //
-                  //
-                  //
-                      Container(width: 300,height: 10,
-                        decoration: BoxDecoration(color: Colors.white30,borderRadius: BorderRadius.circular(10)),
-                      child: Column(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'Plot Number',
-                                label: const Text(
-                                  'Plot Number',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
+                    ),
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    // //  // // // /  Signature ... //// /// ///
+                    //
+                    //
+                    //
+                    //
+                    //
+                    //
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 15),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Container(
+                          //   clipBehavior: Clip.antiAlias,
+                          //   decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(20)),
+                          //   height: 180,
+                          //   width: 230,
+                          //   child: SfSignaturePad(
+                          //     minimumStrokeWidth: 1,
+                          //     maximumStrokeWidth: 3,
+                          //     strokeColor: Colors.blue,
+                          //     key: _signaturePadKey,
+                          //     backgroundColor: Colors.grey[200],
+                          //   ),
+                          // ),
+                          Container(
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                                color: Colors.black.withOpacity(0.1),
+                                border: Border.all(),
+                                borderRadius: BorderRadius.circular(20)),
+                            height: 180,
+                            width: 230,
                           ),
-                        ),
-                        //
-                        //
-                        //
-                        //
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'Block',
-                                label: const Text(
-                                  'Block',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                        //
-                        //
-                        //
-                        //
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'Sector',
-                                label: const Text(
-                                  'Sector',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                        //
-                        //
-                        //
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'Phase',
-                                label: const Text(
-                                  'Phase',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                        //
-                        //
-                        //
-                        //
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'Society Name',
-                                label: const Text(
-                                  'Society Name',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                        //
-                        //
-                        //
-                        //
-
-                        //
-                        //
-                        //
-                        //
-                        Padding(
-                          padding: const EdgeInsets.all(15.0),
-                          child: TextField(
-                            keyboardType: TextInputType.number,
-                            controller: propertyPriceController,
-                            decoration: InputDecoration(
-                                hintText:
-                                'District',
-                                label: const Text(
-                                  'District',
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                      ],
-                      ),
-                      ),
-                      // Padding(
-                      //   padding: const EdgeInsets.all(15.0),
-                      //   child: TextField(
-                      //     controller: propertyLocationController,
-                      //     decoration: InputDecoration(
-                      //         hintText:
-                      //             'Fill complete location of property that you want to sell out',
-                      //         label: const Text(
-                      //           'Property Location',
-                      //           style: TextStyle(color: Colors.black),
-                      //         ),
-                      //         enabledBorder: OutlineInputBorder(
-                      //             borderRadius: BorderRadius.circular(10)),
-                      //         focusedBorder: const OutlineInputBorder(
-                      //             borderSide: BorderSide(color: Colors.black))),
-                      //     minLines: 5,
-                      //     maxLines: 20,
-                      //   ),
-                      // ),
-                      //
-                      //
-                      //
-                      //
-                      // signature // // /////............
-                      //
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(10)),
-                              height: 180,
-                              width: 230,
-                              child: SfSignaturePad(
-                                onDrawEnd: ()async {
-                                  // isDrawEnd = true;
-                                  ui.Image image = await _signaturePadKey.currentState!.toImage();
-signatureImage = image;
-                                  print('is draw end executed');
-                                },
-                                minimumStrokeWidth: 1,
-                                maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
-                                key: _signaturePadKey,
-                                backgroundColor: Colors.grey[200],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 15.0, left: 0),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: TextButton(
-                                        child: const Text("Clear"),
-                                        onPressed: () async {
-                                          print('signature cleared');
-                                          _signaturePadKey.currentState!
-                                              .clear();
-                                          signatureImage= null;
-                                        }),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //     Tenant information .....start....
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      const Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: Center(
-                          child: Opacity(
-                            opacity: 0.3,
-                            child: Text(
-                              "Buyer Information",
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black),
-                            ),
-                          ),
-                        ),
-                      ),
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Opacity(
-                          opacity: 0.3,
-                          child: TextField(
-                            readOnly: true,
-                            decoration: InputDecoration(
-                                hintText: 'Full Name',
-                                // label: const Text(
-                                //   'Full Name',
-                                //   style: TextStyle(color: Colors.black),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 15.0, left: 0),
+                            child: Row(
+                              children: [
+                                // Opacity(
+                                //   opacity: 0.3,
+                                //   child: TextButton(
+                                //       child: const Text('Save As Image'),
+                                //       onPressed: () async {
+                                //         ui.Image image = await _signaturePadKey
+                                //             .currentState!
+                                //             .toImage();
+                                //       }),
                                 // ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                      ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Opacity(
-                          opacity: 0.3,
-                          child: TextField(
-                            readOnly: true,
-                            decoration: InputDecoration(
-                                hintText: 'Phone Number',
-                                // label: const Text(
-                                //   'Phone Number ',
-                                //   style: TextStyle(color: Colors.black),
-                                // ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                      ),
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Opacity(
-                          opacity: 0.3,
-                          child: TextField(
-                            readOnly: true,
-                            decoration: InputDecoration(
-                                hintText: 'CNIC (ID Card Number)',
-                                // label: const Text(
-                                //   'CNIC',
-                                //   style: TextStyle(color: Colors.black),
-                                // ),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10)),
-                                focusedBorder: const OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black))),
-                          ),
-                        ),
-                      ),
-                      //
-                      //
-                      //
-                      //
-                      //
-                      // //  // // // /  Signature ... //// /// ///
-                      //
-                      //
-                      //
-                      //
-                      //
-                      //
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 15),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            // Container(
-                            //   clipBehavior: Clip.antiAlias,
-                            //   decoration: BoxDecoration(
-                            //       borderRadius: BorderRadius.circular(20)),
-                            //   height: 180,
-                            //   width: 230,
-                            //   child: SfSignaturePad(
-                            //     minimumStrokeWidth: 1,
-                            //     maximumStrokeWidth: 3,
-                            //     strokeColor: Colors.blue,
-                            //     key: _signaturePadKey,
-                            //     backgroundColor: Colors.grey[200],
-                            //   ),
-                            // ),
-                            Container(
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                  color: Colors.black.withOpacity(0.1),
-                                  border: Border.all(),
-                                  borderRadius: BorderRadius.circular(20)),
-                              height: 180,
-                              width: 230,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 15.0, left: 0),
-                              child: Row(
-                                children: [
-                                  Opacity(
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10.0),
+                                  child: Opacity(
                                     opacity: 0.3,
                                     child: TextButton(
-                                        child: const Text('Save As Image'),
+                                        child: const Text(
+                                          "Clear",
+                                          style: TextStyle(color: Colors.red),
+                                        ),
                                         onPressed: () async {
-                                          ui.Image image =
-                                              await _signaturePadKey
-                                                  .currentState!
-                                                  .toImage();
+                                          _signaturePadKey.currentState!
+                                              .clear();
                                         }),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10.0),
-                                    child: Opacity(
-                                      opacity: 0.3,
-                                      child: TextButton(
-                                          child: const Text("Clear"),
-                                          onPressed: () async {
-                                            _signaturePadKey.currentState!
-                                                .clear();
-                                          }),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                            const SizedBox(height: 25),
-                          ],
-                        ),
+                          ),
+                          const SizedBox(height: 25),
+                        ],
                       ),
-                    ]) ,
-
-                  ),
+                    ),
+                  ]),
                 ),
               ),
-  ],),
+            ),
+          ],
         ),
+      ),
 
       //
       //
@@ -708,14 +789,38 @@ signatureImage = image;
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
-          } else if (propertyLocationController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Location is required')));
-          } else if (signatureImage == null) {
+          } else if (signatureImagevar == null) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Signature is required')));
+          } else if (plotController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Plot number is required')));
+          } else if (blockController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('block is required')));
+          } else if (sectorController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('sector is required')));
+          } else if (phaseController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('phase is required')));
+          } else if (societyController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('society name is required')));
+          } else if (cityRentController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('city is required')));
+          } else if (zipcodeLocationController.text.isEmpty) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Zip Code is required')));
           } else {
             ScaffoldMessenger.of(context).clearSnackBars();
             print('go to new screen');
@@ -725,8 +830,9 @@ signatureImage = image;
                 phoneOfSeller: phoneController.text.toString(),
                 nameOfSeller: nameController.text.toString(),
                 locationOfProperty: propertyLocationController.text.toString(),
-                currentDate:DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-                signatureImage: signatureImage,
+                currentDate:
+                    DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
+                signatureImage: signatureImagevar,
                 cnicOfSeller: cnicController.text.toString(),
               ),
 //

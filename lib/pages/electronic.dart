@@ -60,7 +60,7 @@ class _ElectronicState extends State<Electronic> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 275 / 100,
+                  // height: MediaQuery.of(context).size.height * 275 / 100,
                   child: Column(
                     children: [
                       //
@@ -109,7 +109,6 @@ class _ElectronicState extends State<Electronic> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           keyboardType: TextInputType.number,
-
                           controller: phoneController,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
@@ -308,7 +307,7 @@ class _ElectronicState extends State<Electronic> {
                               child: SfSignaturePad(
                                 minimumStrokeWidth: 1,
                                 maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
+                                strokeColor: Colors.red,
                                 key: _signaturePadKey,
                                 backgroundColor: Colors.grey[200],
                                 onDrawEnd: () async {
@@ -329,7 +328,9 @@ class _ElectronicState extends State<Electronic> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: TextButton(
-                                        child: const Text("Clear"),
+                                        child: const Text("Clear",
+                                            style:
+                                                TextStyle(color: Colors.red)),
                                         onPressed: () async {
                                           _signaturePadKey.currentState!
                                               .clear();
@@ -447,6 +448,28 @@ class _ElectronicState extends State<Electronic> {
                       ),
                       //
                       //
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Address',
+                                // label: const Text(
+                                //   'Full Name',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                      ),
+                      //
+                      //
                       //
                       //
                       //
@@ -493,23 +516,26 @@ class _ElectronicState extends State<Electronic> {
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  Opacity(
-                                    opacity: 0.3,
-                                    child: TextButton(
-                                        child: const Text('Save As Image'),
-                                        onPressed: () async {
-                                          ui.Image image =
-                                              await _signaturePadKey
-                                                  .currentState!
-                                                  .toImage();
-                                        }),
-                                  ),
+                                  // Opacity(
+                                  //   opacity: 0.3,
+                                  //   child: TextButton(
+                                  //       child: const Text('Save As Image'),
+                                  //       onPressed: () async {
+                                  //         ui.Image image =
+                                  //             await _signaturePadKey
+                                  //                 .currentState!
+                                  //                 .toImage();
+                                  //       }),
+                                  // ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: Opacity(
                                       opacity: 0.3,
                                       child: TextButton(
-                                          child: const Text("Clear"),
+                                          child: const Text(
+                                            "Clear",
+                                            style: TextStyle(color: Colors.red),
+                                          ),
                                           onPressed: () async {
                                             _signaturePadKey.currentState!
                                                 .clear();
@@ -594,8 +620,9 @@ class _ElectronicState extends State<Electronic> {
                       conditionOfDevice:
                           conditionofDeviceController.text.toString(),
                       nameOfShop: nameofShopController.text.toString(),
-                  currentDate: DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                  signatureImage:signatureImage ,
+                      currentDate:
+                          DateFormat('yyyy-MM-dd').format(DateTime.now()),
+                      signatureImage: signatureImage,
                     )));
           }
         },

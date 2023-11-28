@@ -26,6 +26,7 @@ class _CarsellState extends State<Carsell> {
   TextEditingController vehicleEngineNoController = TextEditingController();
   TextEditingController vehicleHorsePowerController = TextEditingController();
   TextEditingController vehicleConditionController = TextEditingController();
+  TextEditingController addressConditionController = TextEditingController();
   String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
@@ -59,7 +60,7 @@ class _CarsellState extends State<Carsell> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 320 / 100,
+                  // height: MediaQuery.of(context).size.height * 320 / 100,
                   child: Column(
                     children: [
                       //
@@ -146,13 +147,29 @@ class _CarsellState extends State<Carsell> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           controller: officeController,
-                          minLines: 2,
-                          maxLines: 3,
                           decoration: InputDecoration(
-                              hintText:
-                                  'If you are a dealer than fill complete name & address of your office ',
+                              hintText: 'Office Name',
                               label: const Text(
-                                'Office',
+                                'Office Name',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                      ),
+                      //
+                      //
+                      //
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextField(
+                          controller: addressConditionController,
+                          decoration: InputDecoration(
+                              hintText: 'Address',
+                              label: const Text(
+                                'Address',
                                 style: TextStyle(color: Colors.black),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -347,7 +364,7 @@ class _CarsellState extends State<Carsell> {
                               child: SfSignaturePad(
                                 minimumStrokeWidth: 1,
                                 maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
+                                strokeColor: Colors.red,
                                 key: _signaturePadKey1,
                                 backgroundColor: Colors.grey[200],
                               ),
@@ -357,17 +374,12 @@ class _CarsellState extends State<Carsell> {
                                   const EdgeInsets.only(top: 15.0, left: 0),
                               child: Row(
                                 children: [
-                                  TextButton(
-                                      child: const Text('Save As Image'),
-                                      onPressed: () async {
-                                        ui.Image image = await _signaturePadKey
-                                            .currentState!
-                                            .toImage();
-                                      }),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: TextButton(
-                                        child: const Text("Clear"),
+                                        child: const Text("Clear",
+                                            style:
+                                                TextStyle(color: Colors.red)),
                                         onPressed: () async {
                                           _signaturePadKey1.currentState!
                                               .clear();
@@ -485,6 +497,28 @@ class _CarsellState extends State<Carsell> {
                       ),
                       //
                       //
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Address',
+                                // label: const Text(
+                                //   'Full Name',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                      ),
+                      //
+                      //
                       //
                       //
                       //
@@ -533,19 +567,22 @@ class _CarsellState extends State<Carsell> {
                                 opacity: 0.3,
                                 child: Row(
                                   children: [
-                                    TextButton(
-                                        child: const Text('Save As Image'),
-                                        onPressed: () async {
-                                          ui.Image image =
-                                              await _signaturePadKey
-                                                  .currentState!
-                                                  .toImage();
-                                        }),
+                                    // TextButton(
+                                    //     child: const Text('Save As Image'),
+                                    //     onPressed: () async {
+                                    //       ui.Image image =
+                                    //           await _signaturePadKey
+                                    //               .currentState!
+                                    //               .toImage();
+                                    //     }),
                                     Padding(
                                       padding:
                                           const EdgeInsets.only(left: 10.0),
                                       child: TextButton(
-                                          child: const Text("Clear"),
+                                          child: const Text(
+                                            "Clear",
+                                            style: TextStyle(color: Colors.red),
+                                          ),
                                           onPressed: () async {
                                             _signaturePadKey1.currentState!
                                                 .clear();

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wizstamp/pages/design_of_seller_details.dart';
-import 'package:wizstamp/pages/electronics_confirmation_design.dart';
 
 import 'pages/home.dart';
 import 'utils/theme.dart';
@@ -18,10 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primarySwatch: ThemeColors.primaryColor),
       debugShowCheckedModeBanner: false,
-      home:
-      // ElectronicsConfirmationPage(),
-     // DocumentDesignPage()
-       const Home(),
+      home: const Home(),
     ); // This trailing comma makes auto-formatting nicer for build methods
   }
 }

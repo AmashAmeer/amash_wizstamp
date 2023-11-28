@@ -44,9 +44,10 @@ class ElectronicsFinalResultPage extends StatelessWidget {
   // ui.Image? signatureImage;
   Future<Uint8List> encodeImage(ui.Image image) async {
     final ByteData? byteData =
-    await image.toByteData(format: ui.ImageByteFormat.png);
+        await image.toByteData(format: ui.ImageByteFormat.png);
     return Uint8List.view(byteData!.buffer);
   }
+
   Future<void> _captureAndSave() async {
     print('capture and save is running');
     final imageFile = await screenshotController.capture();
@@ -54,7 +55,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
     // Check if imageFile is not null before using the null check operator
     if (imageFile != null) {
       final path = (await getExternalStorageDirectory())?.path;
-      final fileName = 'Screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
+      final fileName =
+          'Screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
       final file = File('$path/$fileName');
 
       await file.writeAsBytes(imageFile, flush: true);
@@ -68,30 +70,34 @@ class ElectronicsFinalResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => Home(),), (route) => false);
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => Home(),
+        //   ),
+        // );
       },
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           actions: [
-            IconButton(onPressed: (){
-              _captureAndSave();
-
-
-            }, icon: const Icon(Icons.download)),
-            IconButton(onPressed: (){}, icon: const Icon(Icons.share))
+            IconButton(
+                onPressed: () {
+                  _captureAndSave();
+                },
+                icon: const Icon(Icons.download)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.share))
           ],
         ),
         body: Padding(
           padding: EdgeInsets.only(
-              left: size.width * 0.015,
-              right: size.width * 0.015,
-              bottom: size.width * 0.015,
-              // top: size.width * 0.1,
-
+            left: size.width * 0.015,
+            right: size.width * 0.015,
+            bottom: size.width * 0.015,
+            // top: size.width * 0.1,
           ),
           child: Screenshot(
             controller: screenshotController,
@@ -113,7 +119,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     Text(
                       'Electronic Assecories Document',
                       style: TextStyle(
-                          fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
+                          fontSize: size.width * 0.05,
+                          fontWeight: FontWeight.bold),
                     ),
                     //
                     //
@@ -177,7 +184,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: TextField(
-                                        textAlignVertical: TextAlignVertical.center,
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
                                         readOnly: true,
                                         decoration: InputDecoration(
                                           focusedBorder: UnderlineInputBorder(
@@ -190,7 +198,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                           hintMaxLines: 4,
                                           hintText: addressOfShop,
                                           contentPadding: EdgeInsets.only(
-                                              bottom: size.width * 0.032, left: 5),
+                                              bottom: size.width * 0.032,
+                                              left: 5),
                                         ),
                                       ),
                                     ),
@@ -210,7 +219,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                         height: size.height * 0.06,
                                         child: TextField(
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -223,7 +232,6 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                             hintText: name,
                                             contentPadding: EdgeInsets.only(
                                                 bottom: size.height * 0.002,
-
                                                 left: 5),
                                           ),
                                         ),
@@ -245,7 +253,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                         height: size.height * 0.06,
                                         child: TextField(
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -258,7 +266,6 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                             hintText: cnic,
                                             contentPadding: EdgeInsets.only(
                                                 bottom: size.height * 0.002,
-
                                                 left: 5),
                                           ),
                                         ),
@@ -279,9 +286,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                       child: SizedBox(
                                         height: size.height * 0.06,
                                         child: TextField(
-
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -323,7 +329,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: TextField(
-                                        textAlignVertical: TextAlignVertical.center,
+                                        textAlignVertical:
+                                            TextAlignVertical.center,
                                         readOnly: true,
                                         decoration: InputDecoration(
                                           focusedBorder: UnderlineInputBorder(
@@ -336,7 +343,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                           hintMaxLines: 4,
                                           hintText: 'addressOfBuyer',
                                           contentPadding: EdgeInsets.only(
-                                              bottom: size.width * 0.032, left: 5),
+                                              bottom: size.width * 0.032,
+                                              left: 5),
                                         ),
                                       ),
                                     ),
@@ -356,7 +364,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                         height: size.height * 0.06,
                                         child: TextField(
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -390,7 +398,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                         height: size.height * 0.06,
                                         child: TextField(
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -424,7 +432,7 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                                         height: size.height * 0.06,
                                         child: TextField(
                                           textAlignVertical:
-                                          TextAlignVertical.center,
+                                              TextAlignVertical.center,
                                           readOnly: true,
                                           decoration: InputDecoration(
                                             focusedBorder: UnderlineInputBorder(
@@ -448,7 +456,6 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     //
@@ -461,7 +468,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
 
                     reUsableSizedBox('Device Model :', modelOfDevice, size),
 
-                    reUsableSizedBox('Guarantee Duration :', guaranteeOfDevice, size),
+                    reUsableSizedBox(
+                        'Guarantee Duration :', guaranteeOfDevice, size),
                     reUsableSizedBox('Final Price :', priceOfDevice, size),
 
                     //
@@ -489,22 +497,21 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                     Text(
                       'Device Condition ',
                       style: TextStyle(
-                          fontSize: size.width * 0.04, fontWeight: FontWeight.bold),
+                          fontSize: size.width * 0.04,
+                          fontWeight: FontWeight.bold),
                     ),
                     SizedBox(
                       height: size.height * 0.1,
                       child: TextField(
-
                         readOnly: true,
                         decoration: InputDecoration(
-
                           hintMaxLines: 2,
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
-                                color: Colors.black
-                                    .withOpacity(0.5)), // Change color as needed
+                                color: Colors.black.withOpacity(
+                                    0.5)), // Change color as needed
                           ),
-                          hintText:conditionOfDevice,
+                          hintText: conditionOfDevice,
                           hintStyle: TextStyle(fontSize: size.width * 0.03),
                         ),
                       ),
@@ -525,7 +532,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                         FutureBuilder<Uint8List>(
                           future: encodeImage(signatureImage!),
                           builder: (context, snapshot) {
-                            if (snapshot.connectionState == ConnectionState.done) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
                               // If the Future is complete, display the Image widget
                               return Image.memory(
                                 snapshot.data!,
@@ -554,7 +562,8 @@ class ElectronicsFinalResultPage extends StatelessWidget {
                         FutureBuilder<Uint8List>(
                           future: encodeImage(signatureImage!),
                           builder: (context, snapshot) {
-                            if (snapshot.connectionState == ConnectionState.done) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
                               // If the Future is complete, display the Image widget
                               return Image.memory(
                                 snapshot.data!,
@@ -575,7 +584,6 @@ class ElectronicsFinalResultPage extends StatelessWidget {
             ),
           ),
         ),
-
       ),
     );
   }
@@ -589,7 +597,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
       Text(
         heading,
         style:
-        TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
+            TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
       ),
       Expanded(
           child: SizedBox(
@@ -605,7 +613,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
                   hintStyle: TextStyle(fontSize: size.width * 0.032),
                   hintText: hintText,
                   contentPadding:
-                  EdgeInsets.only(left: 5, bottom: size.width * 0.04),
+                      EdgeInsets.only(left: 5, bottom: size.width * 0.04),
                 ),
               ))),
     ],
@@ -670,7 +678,7 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
                 hintStyle: TextStyle(fontSize: size.width * 0.03),
                 hintText: hintText,
                 contentPadding:
-                EdgeInsets.only(bottom: size.width * 0.04, left: 5),
+                    EdgeInsets.only(bottom: size.width * 0.04, left: 5),
               ),
             ),
           ),

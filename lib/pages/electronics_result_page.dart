@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -22,7 +21,6 @@ class ElectronicsDocumentResultPage extends StatelessWidget {
     required this.conditionOfDevice,
     required this.addressOfShop,
     required this.nameOfShop,
-
   });
 
   final String phoneNumber;
@@ -31,32 +29,28 @@ class ElectronicsDocumentResultPage extends StatelessWidget {
   final String modelOfDevice;
   final String priceOfDevice;
   final String guarantee;
-final String nameOfShop;
-final String addressOfShop;
-final String conditionOfDevice;
+  final String nameOfShop;
+  final String addressOfShop;
+  final String conditionOfDevice;
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return PopScope(
-      canPop: false,
-      onPopInvoked: (didPop) {
-        // print('popscope function running');
-        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) {
-          return const Home();
-        },), (route) => false);
+    return WillPopScope(
+      onWillPop: () async {
+        return true;
       },
       child: Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text('Seller Document result'),
           actions: [
-            IconButton(onPressed: (){
-              _captureAndSave();
-
-
-            }, icon: const Icon(Icons.download)),
-            IconButton(onPressed: (){}, icon: const Icon(Icons.share))
+            IconButton(
+                onPressed: () {
+                  _captureAndSave();
+                },
+                icon: const Icon(Icons.download)),
+            IconButton(onPressed: () {}, icon: const Icon(Icons.share))
           ],
         ),
         body: SingleChildScrollView(
@@ -64,7 +58,6 @@ final String conditionOfDevice;
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Screenshot(
@@ -77,8 +70,6 @@ final String conditionOfDevice;
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(10),
                     ),
-
-
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -100,10 +91,10 @@ final String conditionOfDevice;
             ],
           ),
         ),
-
       ),
     );
   }
+
   Future<void> _captureAndSave() async {
     print('capture and save is running');
     final imageFile = await screenshotController.capture();
@@ -111,7 +102,8 @@ final String conditionOfDevice;
     // Check if imageFile is not null before using the null check operator
     if (imageFile != null) {
       final path = (await getExternalStorageDirectory())?.path;
-      final fileName = 'Screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
+      final fileName =
+          'Screenshot_${DateTime.now().millisecondsSinceEpoch}.png';
       final file = File('$path/$fileName');
 
       await file.writeAsBytes(imageFile, flush: true);
@@ -121,12 +113,14 @@ final String conditionOfDevice;
       // Handle the case where imageFile is null, for example, show an error message.
     }
   }
-
 }
 
-
-Widget reusableRow(String label,value, {String? fontFamily,double? size,})
-{
+Widget reusableRow(
+  String label,
+  value, {
+  String? fontFamily,
+  double? size,
+}) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -135,7 +129,7 @@ Widget reusableRow(String label,value, {String? fontFamily,double? size,})
         flex: 1,
         child: Text(
           label,
-          style:const TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontStyle: FontStyle.italic,
             fontSize: 16,

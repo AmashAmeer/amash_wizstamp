@@ -21,24 +21,33 @@ class _PropertyrentState extends State<Propertyrent> {
   String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
-  TextEditingController  nameController = TextEditingController();
-  TextEditingController  phoneController = TextEditingController();
-  TextEditingController  cnicController = TextEditingController();
-  TextEditingController  officeController = TextEditingController();
-  TextEditingController  comissionController = TextEditingController();
-  TextEditingController  securityRentController = TextEditingController();
-  TextEditingController  propertyLocationController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cnicController = TextEditingController();
+  TextEditingController officeController = TextEditingController();
+  TextEditingController comissionController = TextEditingController();
+  TextEditingController securityRentController = TextEditingController();
+  TextEditingController bussiunessLocationController = TextEditingController();
+  //
+  //
+  //
+  TextEditingController plotController = TextEditingController();
+  TextEditingController blockController = TextEditingController();
+  TextEditingController sectorController = TextEditingController();
+  TextEditingController phaseController = TextEditingController();
+  TextEditingController societyController = TextEditingController();
+  TextEditingController cityRentController = TextEditingController();
+  TextEditingController zipcodeLocationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ThemeColors.primaryColor.shade50,
       appBar: AppBar(
-        iconTheme: IconThemeData(
-        color: Colors.white
-        ),
+        iconTheme: IconThemeData(color: Colors.white),
         title: const Text(
           'Property For Rent',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
+          style: TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: const Color.fromARGB(255, 94, 2, 254),
       ),
@@ -58,7 +67,7 @@ class _PropertyrentState extends State<Propertyrent> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
                   width: MediaQuery.of(context).size.width * 90 / 100,
-                  height: MediaQuery.of(context).size.height * 250 / 100,
+                  // height: MediaQuery.of(context).size.height * 250 / 100,
                   child: Column(
                     children: [
                       //
@@ -127,7 +136,6 @@ class _PropertyrentState extends State<Propertyrent> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           keyboardType: TextInputType.number,
-
                           controller: cnicController,
                           decoration: InputDecoration(
                               hintText: 'CNIC (ID Card Number)',
@@ -148,10 +156,8 @@ class _PropertyrentState extends State<Propertyrent> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           controller: officeController,
-
                           decoration: InputDecoration(
-                              hintText:
-                                  'Office Name',
+                              hintText: 'Office Name',
                               label: const Text(
                                 'Office Name',
                                 style: TextStyle(color: Colors.black),
@@ -168,11 +174,9 @@ class _PropertyrentState extends State<Propertyrent> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
-                          controller: officeController,
-
+                          controller: bussiunessLocationController,
                           decoration: InputDecoration(
-                              hintText:
-                              'Business Address',
+                              hintText: 'Business Address',
                               label: const Text(
                                 'Business Address',
                                 style: TextStyle(color: Colors.black),
@@ -194,7 +198,6 @@ class _PropertyrentState extends State<Propertyrent> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           keyboardType: TextInputType.number,
-
                           controller: comissionController,
                           decoration: InputDecoration(
                               hintText: 'Comission Amount of Dealer',
@@ -216,7 +219,6 @@ class _PropertyrentState extends State<Propertyrent> {
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
                           keyboardType: TextInputType.number,
-
                           controller: securityRentController,
                           minLines: 2,
                           maxLines: 2,
@@ -235,23 +237,211 @@ class _PropertyrentState extends State<Propertyrent> {
                       //
                       //
                       //
-                      Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: TextField(
-                          controller: propertyLocationController,
-                          decoration: InputDecoration(
-                              hintText:
-                                  'Fill complete location of building that you want to rent out',
-                              label: const Text(
+                      //
+                      //
+                      //       Container of Address............
+                      //
+                      //
+                      //
+                      //
+                      //
+                      Container(
+                        width: 300,
+                        // height: 200,
+                        decoration: BoxDecoration(
+                            color: Colors.white30,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Column(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(top: 25, bottom: 0),
+                              child: Text(
                                 'Building Location',
-                                style: TextStyle(color: Colors.black),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    color:
+                                        ui.Color.fromARGB(255, 109, 102, 102)),
                               ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black))),
-                          minLines: 5,
-                          maxLines: 20,
+                            ),
+
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            ///
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: plotController,
+                                decoration: InputDecoration(
+                                    hintText: 'Plot Number',
+                                    label: const Text(
+                                      'Plot Number',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: blockController,
+                                decoration: InputDecoration(
+                                    hintText: 'Block',
+                                    label: const Text(
+                                      'Block',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: sectorController,
+                                decoration: InputDecoration(
+                                    hintText: 'Sector',
+                                    label: const Text(
+                                      'Sector',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: phaseController,
+                                decoration: InputDecoration(
+                                    hintText: 'Phase',
+                                    label: const Text(
+                                      'Phase',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: societyController,
+                                decoration: InputDecoration(
+                                    hintText: 'Society Name',
+                                    label: const Text(
+                                      'Society Name',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            //
+
+                            //
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: cityRentController,
+                                decoration: InputDecoration(
+                                    hintText: 'City',
+                                    label: const Text(
+                                      'City',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                            //
+                            //
+                            //
+                            //
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: TextField(
+                                keyboardType: TextInputType.number,
+                                controller: zipcodeLocationController,
+                                decoration: InputDecoration(
+                                    hintText: 'Zip Code',
+                                    label: const Text(
+                                      'Zip Code',
+                                      style: TextStyle(color: Colors.black),
+                                    ),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    focusedBorder: const OutlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.black))),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                       //
@@ -277,11 +467,13 @@ class _PropertyrentState extends State<Propertyrent> {
                               child: SfSignaturePad(
                                 minimumStrokeWidth: 1,
                                 maximumStrokeWidth: 3,
-                                strokeColor: Colors.blue,
+                                strokeColor: Colors.red,
                                 key: _signaturePadKey,
-                                onDrawEnd: ()async {
+                                onDrawEnd: () async {
                                   // isDrawEnd = true;
-                                  ui.Image image = await _signaturePadKey.currentState!.toImage();
+                                  ui.Image image = await _signaturePadKey
+                                      .currentState!
+                                      .toImage();
                                   signatureImage = image;
                                   print('is draw end executed');
                                 },
@@ -304,7 +496,9 @@ class _PropertyrentState extends State<Propertyrent> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10.0),
                                     child: TextButton(
-                                        child: const Text("Clear"),
+                                        child: const Text("Clear",
+                                            style:
+                                                TextStyle(color: Colors.red)),
                                         onPressed: () async {
                                           _signaturePadKey.currentState!
                                               .clear();
@@ -338,7 +532,8 @@ class _PropertyrentState extends State<Propertyrent> {
                       const Padding(
                         padding: EdgeInsets.all(20.0),
                         child: Center(
-                          child: Opacity(opacity: 0.3,
+                          child: Opacity(
+                            opacity: 0.3,
                             child: Text(
                               "Tenant Information",
                               style: TextStyle(
@@ -366,7 +561,8 @@ class _PropertyrentState extends State<Propertyrent> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
                           ),
                         ),
                       ),
@@ -375,10 +571,10 @@ class _PropertyrentState extends State<Propertyrent> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Opacity(opacity: 0.3,
+                        child: Opacity(
+                          opacity: 0.3,
                           child: TextField(
                             keyboardType: TextInputType.number,
-
                             readOnly: true,
                             decoration: InputDecoration(
                                 hintText: 'Phone Number',
@@ -389,7 +585,8 @@ class _PropertyrentState extends State<Propertyrent> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
                           ),
                         ),
                       ),
@@ -398,7 +595,8 @@ class _PropertyrentState extends State<Propertyrent> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: Opacity(opacity: 0.3,
+                        child: Opacity(
+                          opacity: 0.3,
                           child: TextField(
                             keyboardType: TextInputType.number,
                             readOnly: true,
@@ -411,7 +609,30 @@ class _PropertyrentState extends State<Propertyrent> {
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 focusedBorder: const OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.black))),
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
+                        ),
+                      ),
+                      //
+                      //
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Opacity(
+                          opacity: 0.3,
+                          child: TextField(
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Address',
+                                // label: const Text(
+                                //   'Full Name',
+                                //   style: TextStyle(color: Colors.black),
+                                // ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                focusedBorder: const OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
                           ),
                         ),
                       ),
@@ -443,18 +664,15 @@ class _PropertyrentState extends State<Propertyrent> {
                             //   ),
                             // ),
                             Opacity(
-                              opacity:0.3,
+                              opacity: 0.3,
                               child: Container(
-
                                 clipBehavior: Clip.antiAlias,
                                 decoration: BoxDecoration(
-
-                                border: Border.all(),
+                                    border: Border.all(),
                                     color: Colors.black.withOpacity(0.1),
                                     borderRadius: BorderRadius.circular(20)),
                                 height: 180,
                                 width: 230,
-
                               ),
                             ),
                             Padding(
@@ -464,18 +682,22 @@ class _PropertyrentState extends State<Propertyrent> {
                                 opacity: 0.3,
                                 child: Row(
                                   children: [
-                                    TextButton(
-                                        child:
-                                            const Text('Save As Image'),
-                                        onPressed: () async {
-                                          ui.Image image = await _signaturePadKey
-                                              .currentState!
-                                              .toImage();
-                                        }),
+                                    // TextButton(
+                                    //     child: const Text('Save As Image'),
+                                    //     onPressed: () async {
+                                    //       ui.Image image =
+                                    //           await _signaturePadKey
+                                    //               .currentState!
+                                    //               .toImage();
+                                    //     }),
                                     Padding(
-                                      padding: const EdgeInsets.only(left: 10.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 10.0),
                                       child: TextButton(
-                                          child: const Text("Clear"),
+                                          child: const Text(
+                                            "Clear",
+                                            style: TextStyle(color: Colors.red),
+                                          ),
                                           onPressed: () async {
                                             _signaturePadKey1.currentState!
                                                 .clear();
@@ -514,61 +736,43 @@ class _PropertyrentState extends State<Propertyrent> {
         backgroundColor: ThemeColors.primaryColor,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
-
-
-
-          if(nameController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Name is required')));
-          }
-          else if(phoneController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Phone Number is required')));
-
-          }
-          else if(cnicController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('CNIC is required')));
-
-          }
-          else if(officeController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Office section is required')));
-          }
-          else if(comissionController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Add Commission')));
-          }
-          else if(securityRentController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Add Price')));
-          }
-          else if(propertyLocationController.text.isEmpty)
-          {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Location is required')));
-          }
-          else if (signatureImage == null) {
+          if (nameController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Name is required')));
+          } else if (phoneController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Phone Number is required')));
+          } else if (cnicController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('CNIC is required')));
+          } else if (officeController.text.isEmpty) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Office section is required')));
+          } else if (comissionController.text.isEmpty) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Add Commission')));
+          } else if (securityRentController.text.isEmpty) {
+            ScaffoldMessenger.of(context)
+                .showSnackBar(const SnackBar(content: Text('Add Price')));
+          } else if (signatureImage == null) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Signature is required')));
-          }
-
-          else
-          {
+          } else {
             print('go to new screen');
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>
-                RealEstateRentConfirmationPage(
-                  addressOfSeller: officeController.text.toString(),
-                  phoneOfSeller: phoneController.text.toString(),
-                  nameOfSeller: nameController.text.toString(),
-                  locationOfProperty: propertyLocationController.text.toString(),
-                  currentDate:DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-                  signatureImage: signatureImage,
-                  cnicOfSeller: cnicController.text.toString(),
-                ),
-            ));
-          }
+            // Navigator.of(context).push(MaterialPageRoute(
+            //   builder: (context) => RealEstateRentConfirmationPage(
+            //     addressOfSeller: officeController.text.toString(),
+            //     phoneOfSeller: phoneController.text.toString(),
+            //     nameOfSeller: nameController.text.toString(),
 
+            //     currentDate:
+            //         DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
+            //     signatureImage: signatureImage,
+            //     cnicOfSeller: cnicController.text.toString(),
+            //   ),
+            // ));
+          }
         },
         label: const Icon(
           Icons.remove_red_eye_outlined,
