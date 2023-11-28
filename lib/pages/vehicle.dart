@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'package:wizstamp/pages/vehicle_confirmation_page.dart';
+import 'package:wizstamp/pages/vehicle_details_confirmation_page.dart';
 import '../../utils/theme.dart';
 
 class Carsell extends StatefulWidget {
@@ -13,6 +13,8 @@ class Carsell extends StatefulWidget {
 
 class _CarsellState extends State<Carsell> {
   String signature1 = '';
+  ui.Image? signatureImage;
+
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
@@ -26,10 +28,10 @@ class _CarsellState extends State<Carsell> {
   TextEditingController vehicleEngineNoController = TextEditingController();
   TextEditingController vehicleHorsePowerController = TextEditingController();
   TextEditingController vehicleConditionController = TextEditingController();
-  TextEditingController addressConditionController = TextEditingController();
+  TextEditingController addressSellerController = TextEditingController();
   String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
-  GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
+  // GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +80,7 @@ class _CarsellState extends State<Carsell> {
                           child: Text(
                             "Seller/Dealer  information",
                             style: TextStyle(
-                                fontSize: 22,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.black),
                           ),
@@ -108,6 +110,7 @@ class _CarsellState extends State<Carsell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          keyboardType: TextInputType.numberWithOptions(),
                           controller: phoneController,
                           decoration: InputDecoration(
                               hintText: 'Phone Number',
@@ -126,7 +129,8 @@ class _CarsellState extends State<Carsell> {
                       //
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
+                        child: TextField(                          keyboardType: TextInputType.numberWithOptions(),
+
                           controller: cnicController,
                           decoration: InputDecoration(
                               hintText: 'CNIC (ID Card Number)',
@@ -165,7 +169,7 @@ class _CarsellState extends State<Carsell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
-                          controller: addressConditionController,
+                          controller: addressSellerController,
                           decoration: InputDecoration(
                               hintText: 'Address',
                               label: const Text(
@@ -184,7 +188,8 @@ class _CarsellState extends State<Carsell> {
 
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
+                        child: TextField(                          keyboardType: TextInputType.numberWithOptions(),
+
                           controller: commissionController,
                           decoration: InputDecoration(
                               hintText: 'Comission Amount of Dealer',
@@ -204,7 +209,8 @@ class _CarsellState extends State<Carsell> {
 
                       Padding(
                         padding: const EdgeInsets.all(15.0),
-                        child: TextField(
+                        child: TextField(                          keyboardType: TextInputType.numberWithOptions(),
+
                           controller: vehiclePriceController,
                           decoration: InputDecoration(
                               hintText: 'Fill the final price of vehicle',
@@ -363,9 +369,17 @@ class _CarsellState extends State<Carsell> {
                               width: 230,
                               child: SfSignaturePad(
                                 minimumStrokeWidth: 1,
+                                onDrawEnd: () async {
+                                  // isDrawEnd = true;
+                                  ui.Image image = await _signaturePadKey
+                                      .currentState!
+                                      .toImage();
+                                  signatureImage = image;
+                                  print('is draw end executed');
+                                },
                                 maximumStrokeWidth: 3,
                                 strokeColor: Colors.red,
-                                key: _signaturePadKey1,
+                                key: _signaturePadKey,
                                 backgroundColor: Colors.grey[200],
                               ),
                             ),
@@ -381,8 +395,10 @@ class _CarsellState extends State<Carsell> {
                                             style:
                                                 TextStyle(color: Colors.red)),
                                         onPressed: () async {
-                                          _signaturePadKey1.currentState!
+                                          _signaturePadKey.currentState!
                                               .clear();
+                                          signatureImage = null;
+
                                         }),
                                   ),
                                 ],
@@ -584,8 +600,8 @@ class _CarsellState extends State<Carsell> {
                                             style: TextStyle(color: Colors.red),
                                           ),
                                           onPressed: () async {
-                                            _signaturePadKey1.currentState!
-                                                .clear();
+                                            // _signaturePadKey1.currentState!
+                                            //     .clear();
                                           }),
                                     ),
                                   ],
@@ -627,11 +643,14 @@ class _CarsellState extends State<Carsell> {
                 const SnackBar(content: Text('CNIC is required')));
           } else if (officeController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Office section is required')));
-          } else if (commissionController.text.isEmpty) {
+                const SnackBar(content: Text('Office Name is required')));
+          }
+          else if(addressSellerController.text.isEmpty)
+          {
             ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
-          } else if (vehiclePriceController.text.isEmpty) {
+                .showSnackBar(const SnackBar(content: Text('Add Office Address')));
+          }
+           else if (vehiclePriceController.text.isEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
           } else if (vehicleNameController.text.isEmpty) {
@@ -655,26 +674,33 @@ class _CarsellState extends State<Carsell> {
           } else if (vehicleConditionController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Vehicle Condition is required')));
-          } else {
+          }
+          else if (signatureImage == null) {
+            ScaffoldMessenger.of(context).clearSnackBars();
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Signature is required')));
+          }
+          else {
             print('go to vehicle confirmation page ');
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => VehicleDocumentConfirmationPage(
-                  name: nameController.text.toString(),
-                  phoneNumber: phoneController.text.toString(),
-                  cnic: cnicController.text.toString(),
-                  office: officeController.text.toString(),
-                  commissionAmount: commissionController.text.toString(),
-                  priceOfVehicle: vehiclePriceController.text.toString(),
-                  chassisOfVehicle: vehicleChassiNoController.text.toString(),
-                  conditionOfVehicle:
-                      vehicleConditionController.text.toString(),
-                  engineNoOfVehicle: vehicleEngineNoController.text.toString(),
-                  horsePowerOfVehicle:
-                      vehicleHorsePowerController.text.toString(),
-                  modelOfVehicle: vehicleModelController.text.toString(),
-                  nameOfVehicle: vehicleNameController.text.toString(),
-                  registrationOfVehicle:
-                      vehicleRegistrationController.text.toString()),
+              builder: (context) =>VehicleDetailsConfirmationPage(
+                commissionAmount: commissionController.text.toString(),
+                 chassisNo: vehicleChassiNoController.text.toString(),
+                cnicSeller: cnicController.text.toString(),
+                conditionOfVehicle: vehicleConditionController.text.toString(),
+                engineNo: vehicleEngineNoController.text.toString(),
+                horsePower: vehicleHorsePowerController.text.toString(),
+                modelOfVehicle: vehicleModelController.text.toString(),
+                nameSeller: nameController.text.toString(),
+                phoneNumberSeller: phoneController.text.toString(),
+                priceOfVehicle: vehiclePriceController.text.toString(),
+                registrationNo: vehicleRegistrationController.text.toString(),
+                vehicleName: vehicleNameController.text.toString(),
+                officeNameSeller: officeController.text.toString(),
+                officeAddressSeller: addressSellerController.text.toString(),
+                signatureImage: signatureImage,
+              )
+
             ));
           }
         },

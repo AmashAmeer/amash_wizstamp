@@ -9,8 +9,8 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wizstamp/pages/design_of_seller_details.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_confirmation_page.dart';
+import 'package:wizstamp/pages/real_estate_rent_details_confirmation_page.dart';
+import 'package:wizstamp/pages/real_estate_seller_details_confirmation_page.dart';
 import '../../utils/theme.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
@@ -23,8 +23,8 @@ class Propertysell extends StatefulWidget {
 
 class _PropertysellState extends State<Propertysell> {
   String signature1 = '';
-  String signature2 = '';
-  ui.Image? signatureImagevar;
+  // String signature2 = '';
+  ui.Image? signatureImage;
   final GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
 
   // final GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
@@ -305,7 +305,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: plotController,
                               decoration: InputDecoration(
                                   hintText: 'Plot Number',
@@ -327,7 +326,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: blockController,
                               decoration: InputDecoration(
                                   hintText: 'Block',
@@ -349,7 +347,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: sectorController,
                               decoration: InputDecoration(
                                   hintText: 'Sector',
@@ -370,7 +367,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: phaseController,
                               decoration: InputDecoration(
                                   hintText: 'Phase',
@@ -392,7 +388,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: societyController,
                               decoration: InputDecoration(
                                   hintText: 'Society Name',
@@ -419,7 +414,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: cityRentController,
                               decoration: InputDecoration(
                                   hintText: 'City',
@@ -505,9 +499,7 @@ class _PropertysellState extends State<Propertysell> {
                                 ui.Image image = await _signaturePadKey
                                     .currentState!
                                     .toImage();
-                                setState(() {
-                                  signatureImagevar = image;
-                                });
+                                  signatureImage = image;
                                 print('is draw end executed');
                               },
                               minimumStrokeWidth: 1,
@@ -531,7 +523,7 @@ class _PropertysellState extends State<Propertysell> {
                                       onPressed: () async {
                                         print('signature cleared');
                                         _signaturePadKey.currentState!.clear();
-                                        signatureImagevar = null;
+                                        signatureImage = null;
                                       }),
                                 ),
                               ],
@@ -781,15 +773,11 @@ class _PropertysellState extends State<Propertysell> {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Office section is required')));
-          } else if (commissionController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
-          } else if (propertyPriceController.text.isEmpty) {
+          }  else if (propertyPriceController.text.isEmpty) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
-          } else if (signatureImagevar == null) {
+          } else if (signatureImage == null) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Signature is required')));
@@ -823,20 +811,16 @@ class _PropertysellState extends State<Propertysell> {
                 const SnackBar(content: Text('Zip Code is required')));
           } else {
             ScaffoldMessenger.of(context).clearSnackBars();
-            print('go to new screen');
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => RealEstateRentConfirmationPage(
-                addressOfSeller: officeController.text.toString(),
-                phoneOfSeller: phoneController.text.toString(),
-                nameOfSeller: nameController.text.toString(),
-                locationOfProperty: propertyLocationController.text.toString(),
-                currentDate:
-                    DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-                signatureImage: signatureImagevar,
-                cnicOfSeller: cnicController.text.toString(),
-              ),
-//
-            ));
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => RealEstateSellerConfirmationPage(addressOfSeller:bussiunessLocationController.text.toString() , commission: commissionController.text.toString(), nameOfSeller: nameController.text.toString()
+                , phoneOfSeller: phoneController.text.toString(),
+                propertyLocation:'plot ${plotController.text},'
+                    'block ${blockController.text},'
+                    'sector ${sectorController.text},'
+                    'phase ${phaseController.text},'
+                    '${societyController.text},${cityRentController.text}, ${zipcodeLocationController.text}, ' ,
+                businessLocation: propertyLocationController.text.toString(),
+                signatureImage: signatureImage,
+                cnicOfSeller: cnicController.text.toString()),));
           }
         },
         label: const Icon(Icons.remove_red_eye_outlined, color: Colors.white),

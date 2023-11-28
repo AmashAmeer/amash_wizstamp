@@ -4,8 +4,7 @@ import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:wizstamp/pages/electronics_final_result_page.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_result_page.dart';
+import 'package:wizstamp/pages/real_estate_seller_details_confirmation_page.dart';
 
 class ElectronicsConfirmationPage extends StatelessWidget {
   final String phoneNumberSeller;
@@ -1056,21 +1055,7 @@ border: InputBorder.none,
           icon: const Icon(Icons.check),
           onPressed: () {
             print('navigating to new page');
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context)
-            =>
-                ElectronicsFinalResultPage(name: nameSeller,
-                    phoneNumber: phoneNumberSeller,
-                    cnic: cnicSeller,
-                    deviceName: deviceName,
-                    modelOfDevice: modelOfDevice,
-                    priceOfDevice: priceOfDevice,
-                    guaranteeOfDevice: guaranteeOfDevice,
-                    addressOfShop: addressOfShopSeller,
-                    conditionOfDevice: conditionOfDevice,
-                    nameOfShop: nameOfShopSeller,
-                    currentDate: currentDate,
-                    signatureImage: signatureImage),));
+
           },
           label: const Text('confirm')),
       // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,

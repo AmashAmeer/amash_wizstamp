@@ -1,0 +1,1 @@
+ D:\\final\ clone\\amash_wizstamp\\.dart_tool\\flutter_build\\6a0e7ea381f52629fae7dcf8cc38e964\\native_assets.yaml: 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wizstamp/pages/vehicle_details_confirmation_page.dart';
 
 import 'pages/home.dart';
 import 'utils/theme.dart';
@@ -16,7 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(primarySwatch: ThemeColors.primaryColor),
       debugShowCheckedModeBanner: false,
-      home: const Home(),
+      home:
+      // VehicleDetailsConfirmationPage()
+      const Home(),
     ); // This trailing comma makes auto-formatting nicer for build methods
   }
 }
