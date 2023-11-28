@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'package:wizstamp/pages/vehicle_confirmation_page.dart';
 import '../../utils/theme.dart';
+import 'vehicle_details_confirmation_page.dart';
 
 class Carsell extends StatefulWidget {
   const Carsell({super.key});
@@ -27,7 +27,7 @@ class _CarsellState extends State<Carsell> {
   TextEditingController vehicleHorsePowerController = TextEditingController();
   TextEditingController vehicleConditionController = TextEditingController();
   TextEditingController addressConditionController = TextEditingController();
-  String signature2 = '';
+  // String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
 
@@ -625,9 +625,6 @@ class _CarsellState extends State<Carsell> {
           } else if (cnicController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('CNIC is required')));
-          } else if (officeController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Office section is required')));
           } else if (commissionController.text.isEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Commission')));
@@ -658,23 +655,23 @@ class _CarsellState extends State<Carsell> {
           } else {
             print('go to vehicle confirmation page ');
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => VehicleDocumentConfirmationPage(
-                  name: nameController.text.toString(),
-                  phoneNumber: phoneController.text.toString(),
-                  cnic: cnicController.text.toString(),
-                  office: officeController.text.toString(),
-                  commissionAmount: commissionController.text.toString(),
-                  priceOfVehicle: vehiclePriceController.text.toString(),
-                  chassisOfVehicle: vehicleChassiNoController.text.toString(),
-                  conditionOfVehicle:
-                      vehicleConditionController.text.toString(),
-                  engineNoOfVehicle: vehicleEngineNoController.text.toString(),
-                  horsePowerOfVehicle:
-                      vehicleHorsePowerController.text.toString(),
-                  modelOfVehicle: vehicleModelController.text.toString(),
-                  nameOfVehicle: vehicleNameController.text.toString(),
-                  registrationOfVehicle:
-                      vehicleRegistrationController.text.toString()),
+              builder: (context) => VehicleDetailsConfirmationPage(
+                nameSeller: nameController.text.toString(),
+                phoneNumberSeller: phoneController.text.toString(),
+                cnicSeller: cnicController.text.toString(),
+                officeNameSeller: officeController.text.toString(),
+                commissionAmount: commissionController.text.toString(),
+                priceOfVehicle: vehiclePriceController.text.toString(),
+                chassisNo: vehicleChassiNoController.text.toString(),
+                conditionOfVehicle: vehicleConditionController.text.toString(),
+                engineNo: vehicleEngineNoController.text.toString(),
+                horsePower: vehicleHorsePowerController.text.toString(),
+                modelOfVehicle: vehicleModelController.text.toString(),
+                vehicleName: vehicleNameController.text.toString(),
+                registrationNo: vehicleRegistrationController.text.toString(),
+                signatureImage: null,
+                officeAddressSeller: '',
+              ),
             ));
           }
         },

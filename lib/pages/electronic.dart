@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'package:wizstamp/pages/electronics_confirmation_page.dart';
 import '../utils/theme.dart';
-import 'electronics_confirmation_design.dart';
+import 'electronics_details_confirmation_page.dart';
 
 class Electronic extends StatefulWidget {
   const Electronic({super.key});
@@ -608,18 +607,19 @@ class _ElectronicState extends State<Electronic> {
             print('Navigating to result screen');
             Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => ElectronicsConfirmationPage(
-                      name: nameController.text.toString(),
-                      phoneNumber: phoneController.text.toString(),
-                      cnic: cnicController.text.toString(),
+                      nameSeller: nameController.text.toString(),
+                      phoneNumberSeller: phoneController.text.toString(),
+                      cnicSeller: cnicController.text.toString(),
                       deviceName: nameOfDeviceController.text.toString(),
                       modelOfDevice: modelofDeviceController.text.toString(),
                       priceOfDevice: priceofDeviceController.text.toString(),
                       guaranteeOfDevice:
                           guaranteeofDeviceController.text.toString(),
-                      addressOfShop: addressofShopController.text.toString(),
+                      addressOfShopSeller:
+                          addressofShopController.text.toString(),
                       conditionOfDevice:
                           conditionofDeviceController.text.toString(),
-                      nameOfShop: nameofShopController.text.toString(),
+                      nameOfShopSeller: nameofShopController.text.toString(),
                       currentDate:
                           DateFormat('yyyy-MM-dd').format(DateTime.now()),
                       signatureImage: signatureImage,

@@ -4,8 +4,6 @@ import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:wizstamp/pages/electronics_final_result_page.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_result_page.dart';
 
 class ElectronicsConfirmationPage extends StatelessWidget {
   final String phoneNumberSeller;
@@ -39,15 +37,13 @@ class ElectronicsConfirmationPage extends StatelessWidget {
   // ui.Image? signatureImage;
   Future<Uint8List> encodeImage(ui.Image image) async {
     final ByteData? byteData =
-    await image.toByteData(format: ui.ImageByteFormat.png);
+        await image.toByteData(format: ui.ImageByteFormat.png);
     return Uint8List.view(byteData!.buffer);
   }
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery
-        .of(context)
-        .size;
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -77,7 +73,6 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                 //
                 //
                 //date and receipt row////////
-
 
                 ///
                 /// landlord and tenant table
@@ -111,7 +106,6 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-
                     DottedBorder(
                       padding: EdgeInsets.all(size.width * 0.015),
                       child: SizedBox(
@@ -135,7 +129,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -146,10 +141,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: nameSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -157,11 +153,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -177,7 +170,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -188,10 +182,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: cnicSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -199,11 +194,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -219,7 +211,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: 15.0,baselineType: TextBaseline.alphabetic,
+                                    baseline: 15.0,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -230,10 +223,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: phoneNumberSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -241,16 +235,13 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Baseline(
-                                  baseline:size.width * 0.04,
+                                  baseline: size.width * 0.04,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Address:',
@@ -261,7 +252,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline:size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -272,11 +264,12 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.025,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.025,
+                                              fontWeight: FontWeight.bold),
                                           hintText: addressOfShopSeller,
-                                          hintMaxLines:6,
+                                          hintMaxLines: 6,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -284,11 +277,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                           ],
                         ),
                       ),
@@ -317,7 +307,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -328,10 +319,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: 'Name of Buyer',
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -339,11 +331,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -359,7 +348,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -370,10 +360,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: '35202-3671318-5',
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -381,11 +372,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -401,7 +389,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: 15.0,baselineType: TextBaseline.alphabetic,
+                                    baseline: 15.0,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -412,10 +401,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: '03054877242',
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -423,16 +413,13 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Baseline(
-                                  baseline:size.width * 0.04,
+                                  baseline: size.width * 0.04,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Address:',
@@ -443,7 +430,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline:size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -454,11 +442,13 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.025,fontWeight: FontWeight.bold),
-                                          hintText: 'House 07 street 01 staff colony central jail kot lakhpat lahore',
-                                          hintMaxLines:6,
+                                              fontSize: size.width * 0.025,
+                                              fontWeight: FontWeight.bold),
+                                          hintText:
+                                              'House 07 street 01 staff colony central jail kot lakhpat lahore',
+                                          hintMaxLines: 6,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -466,11 +456,8 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                           ],
                         ),
                       ),
@@ -765,7 +752,6 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                     //     ),
                     //   ),
                     // ),
-
                   ],
                 ),
                 //
@@ -778,8 +764,7 @@ class ElectronicsConfirmationPage extends StatelessWidget {
 
                 reUsableSizedBox('Device Model :', modelOfDevice, size),
 
-                reUsableSizedBox(
-                    'Guarantee :', guaranteeOfDevice, size),
+                reUsableSizedBox('Guarantee :', guaranteeOfDevice, size),
                 reUsableSizedBox('Final Price :', priceOfDevice, size),
 
                 //
@@ -955,13 +940,11 @@ class ElectronicsConfirmationPage extends StatelessWidget {
 
                 Container(
                   width: double.infinity,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 0.5
-                    )
-                  ),
+                  decoration: BoxDecoration(border: Border.all(width: 0.5)),
                 ),
-                SizedBox(height: size.height*0.02,),
+                SizedBox(
+                  height: size.height * 0.02,
+                ),
                 Text(
                   'Device Condition ',
                   style: TextStyle(
@@ -970,10 +953,9 @@ class ElectronicsConfirmationPage extends StatelessWidget {
                 SizedBox(
                   height: size.height * 0.1,
                   child: TextField(
-
                     readOnly: true,
                     decoration: InputDecoration(
-border: InputBorder.none,
+                      border: InputBorder.none,
                       hintMaxLines: 2,
                       focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(
@@ -998,7 +980,9 @@ border: InputBorder.none,
                         fontSize: size.height * 0.016,
                       ),
                     ),
-                    SizedBox(width: size.width*0.02,),
+                    SizedBox(
+                      width: size.width * 0.02,
+                    ),
                     FutureBuilder<Uint8List>(
                       future: encodeImage(signatureImage!),
                       builder: (context, snapshot) {
@@ -1028,7 +1012,9 @@ border: InputBorder.none,
                         fontSize: size.height * 0.016,
                       ),
                     ),
-                    SizedBox(width: size.width*0.02,),
+                    SizedBox(
+                      width: size.width * 0.02,
+                    ),
                     FutureBuilder<Uint8List>(
                       future: encodeImage(signatureImage!),
                       builder: (context, snapshot) {
@@ -1055,22 +1041,7 @@ border: InputBorder.none,
       floatingActionButton: FloatingActionButton.extended(
           icon: const Icon(Icons.check),
           onPressed: () {
-            print('navigating to new page');
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-                builder: (context)
-            =>
-                ElectronicsFinalResultPage(name: nameSeller,
-                    phoneNumber: phoneNumberSeller,
-                    cnic: cnicSeller,
-                    deviceName: deviceName,
-                    modelOfDevice: modelOfDevice,
-                    priceOfDevice: priceOfDevice,
-                    guaranteeOfDevice: guaranteeOfDevice,
-                    addressOfShop: addressOfShopSeller,
-                    conditionOfDevice: conditionOfDevice,
-                    nameOfShop: nameOfShopSeller,
-                    currentDate: currentDate,
-                    signatureImage: signatureImage),));
+            // show dialog
           },
           label: const Text('confirm')),
       // floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
@@ -1086,7 +1057,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
       Text(
         heading,
         style:
-        TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
+            TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
       ),
       Expanded(
           child: SizedBox(
@@ -1102,7 +1073,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
                   hintStyle: TextStyle(fontSize: size.width * 0.032),
                   hintText: hintText,
                   contentPadding:
-                  EdgeInsets.only(left: 5, bottom: size.width * 0.04),
+                      EdgeInsets.only(left: 5, bottom: size.width * 0.04),
                 ),
               ))),
     ],
@@ -1158,7 +1129,6 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
             child: TextField(
               textAlignVertical: TextAlignVertical.center,
               readOnly: true,
-
               decoration: InputDecoration(
                 focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
@@ -1167,8 +1137,8 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
                 ),
                 hintStyle: TextStyle(fontSize: size.width * 0.03),
                 hintText: hintText,
-                contentPadding:
-                EdgeInsets.only(bottom: size.width * 0.04, left: size.width*0.3),
+                contentPadding: EdgeInsets.only(
+                    bottom: size.width * 0.04, left: size.width * 0.3),
               ),
             ),
           ),

@@ -9,10 +9,10 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:wizstamp/pages/design_of_seller_details.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_confirmation_page.dart';
 import '../../utils/theme.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
+
+import 'real_estate_rent_details_confirmation_page.dart';
 
 class Propertysell extends StatefulWidget {
   const Propertysell({super.key});
