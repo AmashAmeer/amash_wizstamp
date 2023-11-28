@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import '../../utils/theme.dart';
+import 'package:wizstamp/pages/real_estate_rent_details_confirmation_page.dart';
 
 class Propertyrent extends StatefulWidget {
   const Propertyrent({super.key});
@@ -22,10 +23,11 @@ class _PropertyrentState extends State<Propertyrent> {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
-  TextEditingController officeController = TextEditingController();
+  TextEditingController officeNameController = TextEditingController();
   TextEditingController comissionController = TextEditingController();
   TextEditingController securityRentController = TextEditingController();
   TextEditingController bussiunessLocationController = TextEditingController();
+
   //
   //
   //
@@ -36,6 +38,7 @@ class _PropertyrentState extends State<Propertyrent> {
   TextEditingController societyController = TextEditingController();
   TextEditingController cityRentController = TextEditingController();
   TextEditingController zipcodeLocationController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -153,7 +156,7 @@ class _PropertyrentState extends State<Propertyrent> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
-                          controller: officeController,
+                          controller: officeNameController,
                           decoration: InputDecoration(
                               hintText: 'Office Name',
                               label: const Text(
@@ -281,7 +284,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: plotController,
                                 decoration: InputDecoration(
                                     hintText: 'Plot Number',
@@ -304,7 +306,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: blockController,
                                 decoration: InputDecoration(
                                     hintText: 'Block',
@@ -327,7 +328,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: sectorController,
                                 decoration: InputDecoration(
                                     hintText: 'Sector',
@@ -349,7 +349,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: phaseController,
                                 decoration: InputDecoration(
                                     hintText: 'Phase',
@@ -372,7 +371,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: societyController,
                                 decoration: InputDecoration(
                                     hintText: 'Society Name',
@@ -400,7 +398,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: cityRentController,
                                 decoration: InputDecoration(
                                     hintText: 'City',
@@ -500,6 +497,7 @@ class _PropertyrentState extends State<Propertyrent> {
                                         onPressed: () async {
                                           _signaturePadKey.currentState!
                                               .clear();
+                                          signatureImage = null;
                                         }),
                                   ),
                                 ],
@@ -735,41 +733,40 @@ class _PropertyrentState extends State<Propertyrent> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         onPressed: () {
           if (nameController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Name is required')));
+            showSnackBarF(context, 'Enter Your Name');
           } else if (phoneController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Phone Number is required')));
+            showSnackBarF(context, 'Enter Phone number');
           } else if (cnicController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('CNIC is required')));
-          } else if (officeController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Office section is required')));
-          } else if (comissionController.text.isEmpty) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
+            showSnackBarF(context, 'Enter CNIC number');
+          } else if (bussiunessLocationController.text.isEmpty) {
+            showSnackBarF(context, 'Add business address');
           } else if (securityRentController.text.isEmpty) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Price')));
+            showSnackBarF(context, 'Enter price');
           } else if (signatureImage == null) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Signature is required')));
+            showSnackBarF(context, 'Signature is required');
+          } else if (cityRentController.text.isEmpty) {
+            showSnackBarF(context, 'Enter City');
+          } else if (zipcodeLocationController.text.isEmpty) {
+            showSnackBarF(context, 'Enter Zip Code');
           } else {
             print('go to new screen');
-            // Navigator.of(context).push(MaterialPageRoute(
-            //   builder: (context) => RealEstateRentConfirmationPage(
-            //     addressOfSeller: officeController.text.toString(),
-            //     phoneOfSeller: phoneController.text.toString(),
-            //     nameOfSeller: nameController.text.toString(),
-
-            //     currentDate:
-            //         DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-            //     signatureImage: signatureImage,
-            //     cnicOfSeller: cnicController.text.toString(),
-            //   ),
-            // ));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => RealEstateRentConfirmationPage(
+                addressOfSeller: bussiunessLocationController.text.toString(),
+                phoneOfSeller: phoneController.text.toString(),
+                nameOfSeller: nameController.text.toString(),
+                signatureImage: signatureImage,
+                cnicOfSeller: cnicController.text.toString(),
+                locationOfProperty: 'plot ${plotController.text},'
+                    'block ${blockController.text},'
+                    'sector ${sectorController.text},'
+                    'phase ${phaseController.text},'
+                    '${societyController.text},${cityRentController.text}, ${zipcodeLocationController.text}, ',
+                currentDate: '',
+                // rent: securityRentController.text,
+                // commission: comissionController.text.toString(), currentDate: '',
+              ),
+            ));
           }
         },
         label: const Icon(
@@ -824,8 +821,8 @@ class _PropertyrentState extends State<Propertyrent> {
         duration: const Duration(seconds: 10),
         action: SnackBarAction(
           textColor: Colors.orange,
-          label: 'Undo',
-          onPressed: () {},
+          // label: 'Undo',
+          onPressed: () {}, label: '',
         ),
       ),
     );
