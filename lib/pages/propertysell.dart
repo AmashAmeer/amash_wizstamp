@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:wizstamp/pages/real_estate_rent_details_confirmation_page.dart';
+import 'package:wizstamp/pages/real_estate_seller_details_confirmation_page.dart';
 import '../../utils/theme.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 
@@ -34,9 +35,10 @@ class _PropertysellState extends State<Propertysell> {
   TextEditingController officeController = TextEditingController();
   TextEditingController commissionController = TextEditingController();
   TextEditingController propertyPriceController = TextEditingController();
-  TextEditingController propertyLocationController = TextEditingController();
+  TextEditingController businessLocation = TextEditingController();
   TextEditingController signatureController = TextEditingController();
   TextEditingController bussiunessLocationController = TextEditingController();
+
   //
   //
   //
@@ -97,7 +99,10 @@ class _PropertysellState extends State<Propertysell> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
-                  width: MediaQuery.of(context).size.width * 90 / 100,
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width * 90 / 100,
                   child: Column(children: [
                     //
                     //
@@ -245,7 +250,7 @@ class _PropertysellState extends State<Propertysell> {
                         controller: propertyPriceController,
                         decoration: InputDecoration(
                             hintText:
-                                'Fill the final price of property that you want to sell out',
+                            'Fill the final price of property that you want to sell out',
                             label: const Text(
                               'Final Price of Property',
                               style: TextStyle(color: Colors.black),
@@ -304,7 +309,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: plotController,
                               decoration: InputDecoration(
                                   hintText: 'Plot Number',
@@ -316,7 +320,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -326,7 +330,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: blockController,
                               decoration: InputDecoration(
                                   hintText: 'Block',
@@ -338,7 +341,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -348,7 +351,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: sectorController,
                               decoration: InputDecoration(
                                   hintText: 'Sector',
@@ -360,7 +362,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -369,7 +371,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: phaseController,
                               decoration: InputDecoration(
                                   hintText: 'Phase',
@@ -381,7 +382,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -391,7 +392,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: societyController,
                               decoration: InputDecoration(
                                   hintText: 'Society Name',
@@ -403,7 +403,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -418,7 +418,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: cityRentController,
                               decoration: InputDecoration(
                                   hintText: 'City',
@@ -430,7 +429,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -440,7 +439,6 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
-                              keyboardType: TextInputType.number,
                               controller: zipcodeLocationController,
                               decoration: InputDecoration(
                                   hintText: 'Zip Code',
@@ -452,7 +450,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                          BorderSide(color: Colors.black))),
+                                      BorderSide(color: Colors.black))),
                             ),
                           ),
                         ],
@@ -780,10 +778,6 @@ class _PropertysellState extends State<Propertysell> {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Office section is required')));
-          } else if (commissionController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
           } else if (propertyPriceController.text.isEmpty) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context)
@@ -792,26 +786,6 @@ class _PropertysellState extends State<Propertysell> {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Signature is required')));
-          } else if (plotController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Plot number is required')));
-          } else if (blockController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('block is required')));
-          } else if (sectorController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('sector is required')));
-          } else if (phaseController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('phase is required')));
-          } else if (societyController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('society name is required')));
           } else if (cityRentController.text.isEmpty) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context).showSnackBar(
@@ -824,19 +798,23 @@ class _PropertysellState extends State<Propertysell> {
             ScaffoldMessenger.of(context).clearSnackBars();
             print('go to new screen');
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => RealEstateRentConfirmationPage(
-                addressOfSeller: officeController.text.toString(),
-                phoneOfSeller: phoneController.text.toString(),
-                nameOfSeller: nameController.text.toString(),
-                locationOfProperty: propertyLocationController.text.toString(),
-                currentDate:
-                    DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-                signatureImage: signatureImagevar,
-                cnicOfSeller: cnicController.text.toString(),
-              ),
+              builder: (context) =>
+                  RealEstateSellerConfirmationPage(
+                      addressOfSeller: officeController.text.toString(),
+                      businessAddress: bussiunessLocationController.text.toString(),
+                      phoneOfSeller: phoneController.text.toString(),
+              nameOfSeller: nameController.text.toString(),
+              locationOfProperty: 'Plot ${plotController
+                  .text} Block ${blockController.text} Sector ${sectorController
+                  .text} phase ${phaseController.text} ${societyController
+                  .text} ${cityRentController.text} ${zipcodeLocationController
+                  .text}',
+              signatureImage: signatureImagevar,
+              cnicOfSeller: cnicController.text.toString(),
+            ),
 //
             ));
-          }
+        }
         },
         label: const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
         icon: const Text(
