@@ -3,9 +3,7 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'package:wizstamp/pages/real_estate_rent_confirmation_page.dart';
 import '../../utils/theme.dart';
-import 'design_of_seller_details.dart';
 
 class Propertyrent extends StatefulWidget {
   const Propertyrent({super.key});

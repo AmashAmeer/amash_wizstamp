@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
-import 'package:wizstamp/pages/vehicle_confirmation_page.dart';
+import 'package:wizstamp/pages/vehicle_details_confirmation_page.dart';
 import '../../utils/theme.dart';
 
 class Carsell extends StatefulWidget {
@@ -13,6 +13,7 @@ class Carsell extends StatefulWidget {
 
 class _CarsellState extends State<Carsell> {
   String signature1 = '';
+  ui.Image? signatureImage ;
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
@@ -27,9 +28,9 @@ class _CarsellState extends State<Carsell> {
   TextEditingController vehicleHorsePowerController = TextEditingController();
   TextEditingController vehicleConditionController = TextEditingController();
   TextEditingController addressConditionController = TextEditingController();
-  String signature2 = '';
+  // String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
-  GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
+  // GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -365,8 +366,16 @@ class _CarsellState extends State<Carsell> {
                                 minimumStrokeWidth: 1,
                                 maximumStrokeWidth: 3,
                                 strokeColor: Colors.red,
-                                key: _signaturePadKey1,
+                                key: _signaturePadKey,
                                 backgroundColor: Colors.grey[200],
+                                onDrawEnd: () async {
+                                  // isDrawEnd = true;
+                                  ui.Image image = await _signaturePadKey
+                                      .currentState!
+                                      .toImage();
+                                  signatureImage = image;
+                                  print('is draw end executed');
+                                },
                               ),
                             ),
                             Padding(
@@ -381,8 +390,9 @@ class _CarsellState extends State<Carsell> {
                                             style:
                                                 TextStyle(color: Colors.red)),
                                         onPressed: () async {
-                                          _signaturePadKey1.currentState!
+                                          _signaturePadKey.currentState!
                                               .clear();
+                                          signatureImage =null;
                                         }),
                                   ),
                                 ],
@@ -584,7 +594,7 @@ class _CarsellState extends State<Carsell> {
                                             style: TextStyle(color: Colors.red),
                                           ),
                                           onPressed: () async {
-                                            _signaturePadKey1.currentState!
+                                            _signaturePadKey.currentState!
                                                 .clear();
                                           }),
                                     ),
@@ -628,10 +638,7 @@ class _CarsellState extends State<Carsell> {
           } else if (officeController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Office section is required')));
-          } else if (commissionController.text.isEmpty) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
-          } else if (vehiclePriceController.text.isEmpty) {
+          }  else if (vehiclePriceController.text.isEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
           } else if (vehicleNameController.text.isEmpty) {
@@ -655,26 +662,31 @@ class _CarsellState extends State<Carsell> {
           } else if (vehicleConditionController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Vehicle Condition is required')));
-          } else {
+          }else if (signatureImage==null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text('Signature is required')));
+          }
+
+          else {
             print('go to vehicle confirmation page ');
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => VehicleDocumentConfirmationPage(
-                  name: nameController.text.toString(),
-                  phoneNumber: phoneController.text.toString(),
-                  cnic: cnicController.text.toString(),
-                  office: officeController.text.toString(),
-                  commissionAmount: commissionController.text.toString(),
-                  priceOfVehicle: vehiclePriceController.text.toString(),
-                  chassisOfVehicle: vehicleChassiNoController.text.toString(),
-                  conditionOfVehicle:
-                      vehicleConditionController.text.toString(),
-                  engineNoOfVehicle: vehicleEngineNoController.text.toString(),
-                  horsePowerOfVehicle:
-                      vehicleHorsePowerController.text.toString(),
-                  modelOfVehicle: vehicleModelController.text.toString(),
-                  nameOfVehicle: vehicleNameController.text.toString(),
-                  registrationOfVehicle:
-                      vehicleRegistrationController.text.toString()),
+              builder: (context) => VehicleDetailsConfirmationPage(
+                nameSeller: nameController.text.toString(),
+                phoneNumberSeller: phoneController.text.toString(),
+                cnicSeller: cnicController.text.toString(),
+                officeAddressSeller: officeController.text.toString(),
+                commissionAmount: commissionController.text.toString(),
+                priceOfVehicle: vehiclePriceController.text.toString(),
+                chassisNo: vehicleChassiNoController.text.toString(),
+                conditionOfVehicle: vehicleConditionController.text.toString(),
+                engineNo: vehicleEngineNoController.text.toString(),
+                horsePower: vehicleHorsePowerController.text.toString(),
+                modelOfVehicle: vehicleModelController.text.toString(),
+                vehicleName: vehicleNameController.text.toString(),
+                registrationNo: vehicleRegistrationController.text.toString(),
+                officeNameSeller: officeController.text.toString(),
+                signatureImage: signatureImage,
+              ),
             ));
           }
         },

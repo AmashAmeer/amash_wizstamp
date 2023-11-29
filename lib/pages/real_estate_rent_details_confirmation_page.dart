@@ -4,7 +4,7 @@ import 'dart:ui';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:wizstamp/pages/real_estate_seller_document_result_page.dart';
+import 'package:wizstamp/pages/real_estate_seller_details_confirmation_page.dart';
 
 class RealEstateRentConfirmationPage extends StatelessWidget {
   final String addressOfSeller;
@@ -633,17 +633,7 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-            print('navigating to new page');
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => RealEstateSellerResultPage(
-                  addressOfSeller: addressOfSeller,
-                  nameOfSeller: nameOfSeller,
-                  phoneOfSeller: phoneOfSeller,
-                  currentDate: currentDate,
-                  locationOfProperty: locationOfProperty,
-                  signatureImage: signatureImage,
-                  cnicOfSeller: cnicOfSeller),
-            ));
+           // show popup dialog
           },
           label: const Text('confirm')),
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
