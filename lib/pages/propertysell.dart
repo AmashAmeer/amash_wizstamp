@@ -49,6 +49,7 @@ class _PropertysellState extends State<Propertysell> {
   TextEditingController societyController = TextEditingController();
   TextEditingController cityRentController = TextEditingController();
   TextEditingController zipcodeLocationController = TextEditingController();
+  TextEditingController otherinformationController = TextEditingController();
 
 //   void saveImage() async {
 //     signatureImagePath = '';
@@ -99,10 +100,7 @@ class _PropertysellState extends State<Propertysell> {
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10)),
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width * 90 / 100,
+                  width: MediaQuery.of(context).size.width * 90 / 100,
                   child: Column(children: [
                     //
                     //
@@ -250,7 +248,7 @@ class _PropertysellState extends State<Propertysell> {
                         controller: propertyPriceController,
                         decoration: InputDecoration(
                             hintText:
-                            'Fill the final price of property that you want to sell out',
+                                'Fill the final price of property that you want to sell out',
                             label: const Text(
                               'Final Price of Property',
                               style: TextStyle(color: Colors.black),
@@ -320,7 +318,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -341,7 +339,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -362,7 +360,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -382,7 +380,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -403,7 +401,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -429,7 +427,7 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                           //
@@ -439,6 +437,7 @@ class _PropertysellState extends State<Propertysell> {
                           Padding(
                             padding: const EdgeInsets.all(15.0),
                             child: TextField(
+                              keyboardType: TextInputType.number,
                               controller: zipcodeLocationController,
                               decoration: InputDecoration(
                                   hintText: 'Zip Code',
@@ -450,10 +449,28 @@ class _PropertysellState extends State<Propertysell> {
                                       borderRadius: BorderRadius.circular(10)),
                                   focusedBorder: const OutlineInputBorder(
                                       borderSide:
-                                      BorderSide(color: Colors.black))),
+                                          BorderSide(color: Colors.black))),
                             ),
                           ),
                         ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: TextField(
+                        maxLines: 9,
+                        minLines: 3,
+                        controller: otherinformationController,
+                        decoration: InputDecoration(
+                            hintText: 'Other Information',
+                            label: const Text(
+                              'Other Information',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            focusedBorder: const OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black))),
                       ),
                     ),
                     // Padding(
@@ -774,10 +791,6 @@ class _PropertysellState extends State<Propertysell> {
 
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('CNIC is required')));
-          } else if (officeController.text.isEmpty) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Office section is required')));
           } else if (propertyPriceController.text.isEmpty) {
             ScaffoldMessenger.of(context).clearSnackBars();
             ScaffoldMessenger.of(context)
@@ -798,23 +811,22 @@ class _PropertysellState extends State<Propertysell> {
             ScaffoldMessenger.of(context).clearSnackBars();
             print('go to new screen');
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  RealEstateSellerConfirmationPage(
-                      addressOfSeller: officeController.text.toString(),
-                      businessAddress: bussiunessLocationController.text.toString(),
-                      phoneOfSeller: phoneController.text.toString(),
-              nameOfSeller: nameController.text.toString(),
-              locationOfProperty: 'Plot ${plotController
-                  .text} Block ${blockController.text} Sector ${sectorController
-                  .text} phase ${phaseController.text} ${societyController
-                  .text} ${cityRentController.text} ${zipcodeLocationController
-                  .text}',
-              signatureImage: signatureImagevar,
-              cnicOfSeller: cnicController.text.toString(),
-            ),
+              builder: (context) => RealEstateSellerConfirmationPage(
+                addressOfSeller: officeController.text.toString(),
+                businessAddress: bussiunessLocationController.text.toString(),
+                phoneOfSeller: phoneController.text.toString(),
+                nameOfSeller: nameController.text.toString(),
+                finalpriceofproperty: propertyPriceController.text,
+                commisionamount: propertyPriceController.text,
+                locationOfProperty:
+                    'Plot ${plotController.text} Block ${blockController.text} Sector ${sectorController.text} phase ${phaseController.text} ${societyController.text} ${cityRentController.text} ${zipcodeLocationController.text}',
+                signatureImage: signatureImagevar,
+                cnicOfSeller: cnicController.text.toString(),
+                otherinformation: otherinformationController.text,
+              ),
 //
             ));
-        }
+          }
         },
         label: const Icon(Icons.remove_red_eye_outlined, color: Colors.white),
         icon: const Text(

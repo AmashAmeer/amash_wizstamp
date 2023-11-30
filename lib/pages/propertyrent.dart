@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_signaturepad/signaturepad.dart';
 import '../../utils/theme.dart';
+import 'real_estate_rent_details_confirmation_page.dart';
 
 class Propertyrent extends StatefulWidget {
   const Propertyrent({super.key});
@@ -36,6 +37,8 @@ class _PropertyrentState extends State<Propertyrent> {
   TextEditingController societyController = TextEditingController();
   TextEditingController cityRentController = TextEditingController();
   TextEditingController zipcodeLocationController = TextEditingController();
+  TextEditingController securityamountController = TextEditingController();
+  TextEditingController otherinformationController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -218,12 +221,27 @@ class _PropertyrentState extends State<Propertyrent> {
                         child: TextField(
                           keyboardType: TextInputType.number,
                           controller: securityRentController,
-                          minLines: 2,
-                          maxLines: 2,
                           decoration: InputDecoration(
                               hintText: 'Monthly Rent',
                               label: const Text(
-                                'Security & Monthly Rent',
+                                'Monthly Rent',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextField(
+                          keyboardType: TextInputType.number,
+                          controller: securityamountController,
+                          decoration: InputDecoration(
+                              hintText: 'Security amount',
+                              label: const Text(
+                                'security Amount',
                                 style: TextStyle(color: Colors.black),
                               ),
                               enabledBorder: OutlineInputBorder(
@@ -281,7 +299,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: plotController,
                                 decoration: InputDecoration(
                                     hintText: 'Plot Number',
@@ -304,7 +321,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: blockController,
                                 decoration: InputDecoration(
                                     hintText: 'Block',
@@ -327,7 +343,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: sectorController,
                                 decoration: InputDecoration(
                                     hintText: 'Sector',
@@ -349,7 +364,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: phaseController,
                                 decoration: InputDecoration(
                                     hintText: 'Phase',
@@ -372,7 +386,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: societyController,
                                 decoration: InputDecoration(
                                     hintText: 'Society Name',
@@ -400,7 +413,6 @@ class _PropertyrentState extends State<Propertyrent> {
                             Padding(
                               padding: const EdgeInsets.all(15.0),
                               child: TextField(
-                                keyboardType: TextInputType.number,
                                 controller: cityRentController,
                                 decoration: InputDecoration(
                                     hintText: 'City',
@@ -440,6 +452,27 @@ class _PropertyrentState extends State<Propertyrent> {
                               ),
                             ),
                           ],
+                        ),
+                      ),
+                      //
+                      //
+                      //
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextField(
+                          maxLines: 9,
+                          minLines: 3,
+                          controller: otherinformationController,
+                          decoration: InputDecoration(
+                              hintText: 'Other Information',
+                              label: const Text(
+                                'Other Information',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
                         ),
                       ),
                       //
@@ -743,33 +776,34 @@ class _PropertyrentState extends State<Propertyrent> {
           } else if (cnicController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('CNIC is required')));
-          } else if (officeController.text.isEmpty) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Office section is required')));
-          } else if (comissionController.text.isEmpty) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(const SnackBar(content: Text('Add Commission')));
           } else if (securityRentController.text.isEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
           } else if (signatureImage == null) {
-            ScaffoldMessenger.of(context).clearSnackBars();
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Signature is required')));
+            showSnackBarF(context, 'signature required');
+          } else if (securityamountController == null) {
+            showSnackBarF(context, 'security amount is required');
           } else {
             print('go to new screen');
-            // Navigator.of(context).push(MaterialPageRoute(
-            //   builder: (context) => RealEstateRentConfirmationPage(
-            //     addressOfSeller: officeController.text.toString(),
-            //     phoneOfSeller: phoneController.text.toString(),
-            //     nameOfSeller: nameController.text.toString(),
-
-            //     currentDate:
-            //         DateFormat('yyyy-MM-dd').format(DateTime.now()).toString(),
-            //     signatureImage: signatureImage,
-            //     cnicOfSeller: cnicController.text.toString(),
-            //   ),
-            // ));
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => RealEstateRentConfirmationPage(
+                addressOfSeller: officeController.text.toString(),
+                phoneOfSeller: phoneController.text.toString(),
+                nameOfSeller: nameController.text.toString(),
+                signatureImage: signatureImage,
+                securityamount: securityamountController.text,
+                cnicOfSeller: cnicController.text.toString(),
+                monthlyrent: securityRentController.text,
+                commision: comissionController.text,
+                otherinformation: otherinformationController.text,
+                locationOfProperty:
+                    '''Plot ${plotController.text} Block ${blockController.text}
+                    Sector ${sectorController.text} phase ${phaseController.text}
+                     ${societyController.text}  ${cityRentController.text}
+                     ${zipcodeLocationController.text}''',
+                businessAddress: '',
+              ),
+            ));
           }
         },
         label: const Icon(
@@ -839,3 +873,5 @@ class _PropertyrentState extends State<Propertyrent> {
     });
   }
 }
+
+class $ {}

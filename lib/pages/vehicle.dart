@@ -13,7 +13,7 @@ class Carsell extends StatefulWidget {
 
 class _CarsellState extends State<Carsell> {
   String signature1 = '';
-  ui.Image? signatureImage ;
+  ui.Image? signatureImage;
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController cnicController = TextEditingController();
@@ -28,6 +28,7 @@ class _CarsellState extends State<Carsell> {
   TextEditingController vehicleHorsePowerController = TextEditingController();
   TextEditingController vehicleConditionController = TextEditingController();
   TextEditingController addressConditionController = TextEditingController();
+  TextEditingController companycontroller = TextEditingController();
   // String signature2 = '';
   GlobalKey<SfSignaturePadState> _signaturePadKey = GlobalKey();
   // GlobalKey<SfSignaturePadState> _signaturePadKey1 = GlobalKey();
@@ -327,6 +328,22 @@ class _CarsellState extends State<Carsell> {
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: TextField(
+                          controller: companycontroller,
+                          decoration: InputDecoration(
+                              hintText: 'Manufacturer Company',
+                              label: const Text(
+                                'Manufacturer Company',
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black))),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: TextField(
                           controller: vehicleConditionController,
                           decoration: InputDecoration(
                               hintText: 'Describe vehicle Condition',
@@ -392,7 +409,7 @@ class _CarsellState extends State<Carsell> {
                                         onPressed: () async {
                                           _signaturePadKey.currentState!
                                               .clear();
-                                          signatureImage =null;
+                                          signatureImage = null;
                                         }),
                                   ),
                                 ],
@@ -638,7 +655,7 @@ class _CarsellState extends State<Carsell> {
           } else if (officeController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Office section is required')));
-          }  else if (vehiclePriceController.text.isEmpty) {
+          } else if (vehiclePriceController.text.isEmpty) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(const SnackBar(content: Text('Add Price')));
           } else if (vehicleNameController.text.isEmpty) {
@@ -662,12 +679,10 @@ class _CarsellState extends State<Carsell> {
           } else if (vehicleConditionController.text.isEmpty) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Vehicle Condition is required')));
-          }else if (signatureImage==null) {
+          } else if (signatureImage == null) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text('Signature is required')));
-          }
-
-          else {
+          } else {
             print('go to vehicle confirmation page ');
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => VehicleDetailsConfirmationPage(
@@ -686,6 +701,7 @@ class _CarsellState extends State<Carsell> {
                 registrationNo: vehicleRegistrationController.text.toString(),
                 officeNameSeller: officeController.text.toString(),
                 signatureImage: signatureImage,
+                company: companycontroller.text,
               ),
             ));
           }

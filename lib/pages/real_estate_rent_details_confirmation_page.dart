@@ -10,19 +10,41 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
   final String addressOfSeller;
   final String nameOfSeller;
   final String phoneOfSeller;
-  final String currentDate;
   final String locationOfProperty;
+  final String businessAddress;
   final ui.Image? signatureImage;
   final String cnicOfSeller;
+  final String securityamount;
+  final String monthlyrent;
+  final String commision;
+  final String otherinformation;
+  // final String plotController;
+  // final String blockController;
+  // final String sectorController;
+  // final String phaseController;
+  // final String societyController;
+  // final String cityRentController;
+  // final String zipcodeLocationController;
 
   RealEstateRentConfirmationPage({
     required this.addressOfSeller,
+    required this.businessAddress,
     required this.nameOfSeller,
     required this.phoneOfSeller,
-    required this.currentDate,
     required this.locationOfProperty,
     required this.signatureImage,
     required this.cnicOfSeller,
+    required this.securityamount,
+    required this.monthlyrent,
+    required this.commision,
+    required this.otherinformation,
+    // required this.plotController,
+    // required this.blockController,
+    // required this.sectorController,
+    // required this.phaseController,
+    // required this.societyController,
+    // required this.cityRentController,
+    // required this.zipcodeLocationController,
   });
 
   Future<Uint8List> encodeImage(ui.Image image) async {
@@ -35,7 +57,10 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: Padding(
         padding: EdgeInsets.only(
             left: size.width * 0.015,
@@ -60,17 +85,7 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: size.width * 0.05, fontWeight: FontWeight.bold),
                 ),
-                //
-                //
-                //date and receipt row////////
 
-                ///
-                /// //
-                ///
-                ///above responsive
-                ///
-                //
-                reUsableData('Date :', currentDate, size), //
                 //
                 ///
                 /// landlord and tenant table
@@ -84,11 +99,11 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Owner/Dealer',
+                      'Owner/Dealer                   ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Tenant',
+                      'Tenant     ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -104,214 +119,229 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    DottedBorder(
-                      padding: EdgeInsets.all(size.width * 0.015),
-                      child: SizedBox(
-                        height: size.height * 0.21,
-                        width: size.width * 0.42,
-                        child: Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Address:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
-                                Expanded(
-                                  child: TextField(
-                                    textAlignVertical: TextAlignVertical.center,
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.black.withOpacity(
-                                                0.5)), // Change color as needed
-                                      ),
-                                      hintStyle: TextStyle(
-                                          fontSize: size.width * 0.02),
-                                      hintMaxLines: 4,
-                                      hintText: addressOfSeller,
-                                      contentPadding: EdgeInsets.only(
-                                          bottom: size.width * 0.032, left: 5),
+                    Padding(
+                      padding: const EdgeInsets.all(2.5),
+                      child: DottedBorder(
+                        padding: EdgeInsets.all(size.width * 0.015),
+                        child: SizedBox(
+                          height: size.height * 0.18,
+                          width: size.width * 0.42,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.026,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Name:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Name:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: nameOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
+
+                                                left: 5),
+                                          ),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: nameOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.016,
-                                            left: 5),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'CNIC:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.029,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'CNIC:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: cnicOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
+
+                                                left: 5),
+                                          ),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: cnicOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.018,
-                                            left: 5),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Phone:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
-                                Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.028,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Phone:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: 15.0,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: phoneOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
+
+                                                left: 5),
+                                          ),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: phoneOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.018,
-                                            left: 5),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.039,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Address:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.1,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.022,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: businessAddress,
+                                            hintMaxLines: 6,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
+
+                                                left: 5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                     DottedBorder(
                       padding: EdgeInsets.all(size.width * 0.015),
                       child: SizedBox(
-                        height: size.height * 0.21,
+                        height: size.height * 0.18,
                         width: size.width * 0.42,
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Address:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
-                                Expanded(
-                                  child: TextField(
-                                    textAlignVertical: TextAlignVertical.center,
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.black.withOpacity(
-                                                0.5)), // Change color as needed
-                                      ),
-                                      hintStyle: TextStyle(
-                                          fontSize: size.width * 0.02),
-                                      hintMaxLines: 4,
-                                      hintText: addressOfSeller,
-                                      contentPadding: EdgeInsets.only(
-                                          bottom: size.width * 0.032, left: 5),
-                                    ),
+                                Baseline(
+                                  baseline: size.width * 0.026,
+                                  baselineType: TextBaseline.alphabetic,
+                                  child: Text(
+                                    'Name:',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: size.width * 0.03),
                                   ),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'Name:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
-                                ),
                                 Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                  child: Baseline(
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Container(
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(),
+                                      // ),
+                                      height: size.height * 0.05,
+                                      child: TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
+                                          hintText: nameOfSeller,
+                                          contentPadding: EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
+
+                                              left: 5),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: nameOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.016,
-                                            left: 5),
                                       ),
                                     ),
                                   ),
@@ -319,33 +349,40 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'CNIC:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
+                                Baseline(
+                                  baseline: size.width * 0.029,
+                                  baselineType: TextBaseline.alphabetic,
+                                  child: Text(
+                                    'CNIC:',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: size.width * 0.03),
+                                  ),
                                 ),
                                 Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                  child: Baseline(
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Container(
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(),
+                                      // ),
+                                      height: size.height * 0.05,
+                                      child: TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
+                                          hintText: cnicOfSeller,
+                                          contentPadding: EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
+
+                                              left: 5),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: cnicOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.018,
-                                            left: 5),
                                       ),
                                     ),
                                   ),
@@ -353,33 +390,82 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
-                                  'Phone:',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.03),
+                                Baseline(
+                                  baseline: size.width * 0.029,
+                                  baselineType: TextBaseline.alphabetic,
+                                  child: Text(
+                                    'Phone:',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: size.width * 0.03),
+                                  ),
                                 ),
                                 Expanded(
-                                  child: SizedBox(
-                                    height: size.height * 0.04,
-                                    child: TextField(
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
-                                      readOnly: true,
-                                      decoration: InputDecoration(
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: Colors.black.withOpacity(
-                                                  0.5)), // Change color as needed
+                                  child: Baseline(
+                                    baseline: 15.0,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Container(
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(),
+                                      // ),
+                                      height: size.height * 0.05,
+                                      child: TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
+                                          hintText: phoneOfSeller,
+                                          contentPadding: EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
+
+                                              left: 5),
                                         ),
-                                        hintStyle: TextStyle(
-                                            fontSize: size.width * 0.03),
-                                        hintText: phoneOfSeller,
-                                        contentPadding: EdgeInsets.only(
-                                            bottom: size.height * 0.018,
-                                            left: 5),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Baseline(
+                                  baseline: size.width * 0.039,
+                                  baselineType: TextBaseline.alphabetic,
+                                  child: Text(
+                                    'Address:',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: size.width * 0.03),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Baseline(
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Container(
+                                      // decoration: BoxDecoration(
+                                      //   border: Border.all(),
+                                      // ),
+                                      height: size.height * 0.1,
+                                      child: TextField(
+                                        readOnly: true,
+                                        decoration: InputDecoration(
+                                          border: InputBorder.none,
+                                          hintStyle: TextStyle(
+                                              fontSize: size.width * 0.025,
+                                              fontWeight: FontWeight.bold),
+                                          hintText: addressOfSeller,
+                                          hintMaxLines: 6,
+                                          contentPadding: EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
+
+                                              left: 5),
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -397,11 +483,46 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                 /// mid part
                 ///
                 //
-                reUsableSizedBox('Rent/Security :', 'payment here', size),
+                reUsableSizedBox('Monthly Rent :', monthlyrent, size),
+                reUsableSizedBox('Security :', securityamount, size),
 
-                reUsableSizedBox('Commission amount', 'payment here', size),
+                reUsableSizedBox('Commission amount :', commision, size),
 
-                reUsableSizedBox('Total Payment', 'payment here', size),
+                reUsableSizedBox('Total Payment :', 'payment here', size),
+
+                SizedBox(
+                  height: size.height * 0.015,
+                ),
+
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Building Location:',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: size.width * 0.03),
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        height: size.height * 0.09,
+                        child: TextField(
+                          minLines: 2,
+                          maxLines: 4,
+                          textAlignVertical: TextAlignVertical.center,
+                          readOnly: true,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintStyle: TextStyle(fontSize: size.width * 0.03),
+                            hintText: locationOfProperty,
+                            contentPadding: EdgeInsets.only(
+                                bottom: size.height * 0.028, left: 5),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
 
                 //
                 ///
@@ -410,161 +531,7 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                 ///
                 ///
                 //
-                SizedBox(height: size.width * 0.02),
-
-                //
-                ///
-                ///
-                ///
-                ///
-                //
-                SizedBox(
-                  height: size.width * 0.02,
-                ),
-                DottedBorder(
-                  child: Column(
-                    children: [
-                      reUsableContainer(
-                          'Total amount to be', 'amount here', size),
-                      reUsableContainer('Amount received', 'amount here', size),
-                      reUsableContainer('Balance Due', 'Amount here', size),
-
-                      SizedBox(height: size.width * 0.03),
-                      //
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      ///
-                      //
-
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: size.width * 0.05,
-                            width: size.width * 0.5,
-                            child: reusableTextField(
-                                'Received by :', 'name here ', size),
-                          ),
-                          SizedBox(
-                            width: size.width * 0.02,
-                          ),
-                          SizedBox(
-                            child: Text(
-                              '[ ]Cash',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: size.width * 0.03),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.width * 0.02,
-                      ),
-
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: size.width * 0.06,
-                            width: size.width * 0.6,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              // textBaseline: TextBaseline.alphabetic,
-                              children: [
-                                Text(
-                                  'Address :',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: size.width * 0.023),
-                                ),
-                                Expanded(
-                                  child: TextField(
-                                    // textAlignVertical: TextAlignVertical.center,
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.black.withOpacity(
-                                                0.5)), // Change color as needed
-                                      ),
-                                      hintStyle: TextStyle(
-                                          fontSize: size.width * 0.02),
-                                      hintText:
-                                          'House 07 street 01 staff colony central jail kot lakhpat lahore house 0333 hsods  dsh dfd ',
-                                      hintMaxLines: 4,
-                                      contentPadding: EdgeInsets.only(
-                                          bottom: size.width * 0.06, left: 5),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: size.width * 0.001,
-                          ),
-                          SizedBox(
-                            child: Text(
-                              '[ ]Cheque No',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: size.width * 0.02),
-                            ),
-                          ),
-                          Expanded(
-                              child: SizedBox(
-                                  height: size.width * 0.05,
-                                  width: size.width * 0.5,
-                                  child: TextField(
-                                    readOnly: true,
-                                    decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: Colors.black.withOpacity(
-                                                0.5)), // Change color as needed
-                                      ),
-                                      hintText: '9876543210123',
-                                      contentPadding: EdgeInsets.only(
-                                          bottom: size.width * 0.04, left: 5),
-                                      hintStyle: TextStyle(
-                                          fontSize: size.width * 0.018),
-                                    ),
-                                  ))),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.width * 0.02,
-                      ),
-
-                      Row(
-                        children: [
-                          SizedBox(
-                            height: size.width * 0.05,
-                            width: size.width * 0.5,
-                            child: reusableTextField(
-                                'Phone :', '023038923903', size),
-                          ),
-                          SizedBox(
-                            child: Text(
-                              '[ ] Money Order',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: size.width * 0.02),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: size.width * 0.02,
-                      ),
-                    ],
-                  ),
-                ),
-
-                SizedBox(height: size.width * 0.02),
+                SizedBox(height: size.width * 0.00),
                 //
                 ///
                 ///
@@ -574,23 +541,18 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                 ///
                 //
                 Text(
-                  'Description of Property',
+                  'Other Information',
                   style: TextStyle(
                       fontSize: size.width * 0.04, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: size.height * 0.1,
+                  height: size.height * 0.150,
                   child: TextField(
                     readOnly: true,
                     decoration: InputDecoration(
-                      hintMaxLines: 4,
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                            color: Colors.black
-                                .withOpacity(0.5)), // Change color as needed
-                      ),
-                      hintText:
-                          'description of the thing lets say description Description here a quick brown fox jumps over the lazy dog that is a sentence containing all alphabets of english which is we used to practice',
+                      hintMaxLines: 8,
+                      border: InputBorder.none,
+                      hintText: otherinformation,
                       hintStyle: TextStyle(fontSize: size.width * 0.03),
                     ),
                   ),
@@ -599,10 +561,48 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
                 SizedBox(height: size.width * 0.02),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Signature :',
+                      'Owner/Dealer Signature:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: size.height * 0.02,
+                      ),
+                    ),
+                    FutureBuilder<Uint8List>(
+                      future: encodeImage(signatureImage!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          // If the Future is complete, display the Image widget
+                          return Image.memory(
+                            snapshot.data!,
+                            height: 70,
+                            width: 70,
+                          );
+                        } else {
+                          // Display a placeholder or loading indicator while the Future is in progress
+                          return const CircularProgressIndicator();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Tenant Signature:',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: size.height * 0.02,
@@ -633,10 +633,10 @@ class RealEstateRentConfirmationPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
-           // show popup dialog
+            // show popup dialog
           },
           label: const Text('confirm')),
-      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 }
@@ -722,15 +722,11 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
               textAlignVertical: TextAlignVertical.center,
               readOnly: true,
               decoration: InputDecoration(
-                focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(
-                      color: Colors.black
-                          .withOpacity(0.5)), // Change color as needed
-                ),
+                border: InputBorder.none,
                 hintStyle: TextStyle(fontSize: size.width * 0.03),
                 hintText: hintText,
                 contentPadding:
-                    EdgeInsets.only(bottom: size.width * 0.04, left: 5),
+                    EdgeInsets.only(bottom: size.width * 0.036, left: 5),
               ),
             ),
           ),

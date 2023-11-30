@@ -279,8 +279,8 @@ class _ElectronicState extends State<Electronic> {
                                   borderRadius: BorderRadius.circular(10)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.black))),
-                          minLines: 3,
-                          maxLines: 6,
+                          minLines: 4,
+                          maxLines: 5,
                         ),
                       ),
                       //
@@ -606,9 +606,7 @@ class _ElectronicState extends State<Electronic> {
           } else {
             print('Navigating to result screen');
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) =>
-
-                    ElectronicsDetailsConfirmationPage(
+                builder: (context) => ElectronicsDetailsConfirmationPage(
                       nameSeller: nameController.text.toString(),
                       phoneNumberSeller: phoneController.text.toString(),
                       cnicSeller: cnicController.text.toString(),
@@ -617,12 +615,14 @@ class _ElectronicState extends State<Electronic> {
                       priceOfDevice: priceofDeviceController.text.toString(),
                       guaranteeOfDevice:
                           guaranteeofDeviceController.text.toString(),
-                      addressOfShopSeller: addressofShopController.text.toString(),
+                      addressOfShopSeller:
+                          addressofShopController.text.toString(),
                       conditionOfDevice:
                           conditionofDeviceController.text.toString(),
                       currentDate:
                           DateFormat('yyyy-MM-dd').format(DateTime.now()),
-                      signatureImage: signatureImage, nameOfShopSeller: nameofShopController.text.toString(),
+                      signatureImage: signatureImage,
+                      nameOfShopSeller: nameofShopController.text.toString(),
                     )));
           }
         },

@@ -20,6 +20,7 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
   final String horsePower;
   final String conditionOfVehicle;
   final String chassisNo;
+  final String company;
 
   var signatureImage;
   // final ui.Image? signatureImage;
@@ -40,11 +41,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
     required this.horsePower,
     this.commissionAmount = '0.0',
     required this.officeAddressSeller,
+    required this.company,
   });
 
   Future<Uint8List> encodeImage(ui.Image image) async {
     final ByteData? byteData =
-    await image.toByteData(format: ui.ImageByteFormat.png);
+        await image.toByteData(format: ui.ImageByteFormat.png);
     return Uint8List.view(byteData!.buffer);
   }
 
@@ -52,7 +54,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: Padding(
         padding: EdgeInsets.only(
             left: size.width * 0.01,
@@ -87,11 +92,11 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Seller',
+                      'Seller/Dealer               ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Buyer',
+                      'Buyer       ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -118,10 +123,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Name:',
+                                    'Name :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -144,8 +149,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: nameSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -159,10 +164,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'CNIC:',
+                                    'CNIC :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -185,8 +190,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: cnicSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -200,10 +205,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: 15.0,
+                                  baseline: size.width * 0.021,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Phone:',
+                                    'Phone :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -211,7 +216,7 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: 15.0,
+                                    baseline: size.width * 0.029,
                                     baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
@@ -226,8 +231,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: phoneNumberSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -241,10 +246,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.039,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Address:',
+                                    'Address :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -268,8 +273,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontWeight: FontWeight.bold),
                                           hintText: officeAddressSeller,
                                           hintMaxLines: 6,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -283,7 +288,6 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     DottedBorder(
                       padding: EdgeInsets.all(size.width * 0.015),
                       child: SizedBox(
@@ -296,10 +300,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Name:',
+                                    'Name :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -322,8 +326,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: 'Muhammad Shafiiiiii',
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -337,10 +341,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'CNIC:',
+                                    'CNIC :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -363,8 +367,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: '35202-3671318-5',
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -378,10 +382,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: 15.0,
+                                  baseline: size.width * 0.021,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Phone:',
+                                    'Phone :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -404,8 +408,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: '03054877242',
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -419,10 +423,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.039,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Address:',
+                                    'Address :',
                                     style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: size.width * 0.03),
@@ -445,10 +449,10 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.025,
                                               fontWeight: FontWeight.bold),
                                           hintText:
-                                          'House 07 street 01 staff colony central jail kot lakhpat lahore',
+                                              'House 07 street 01 staff colony central jail kot lakhpat lahore',
                                           hintMaxLines: 6,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -487,12 +491,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Vehicle Name:',
+                                    'Vehicle Name :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -513,8 +517,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: vehicleName,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -528,12 +532,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Vehicle Model:',
+                                    'Vehicle Model :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -554,8 +558,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: modelOfVehicle,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -569,12 +573,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Registration No :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -595,8 +599,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: registrationNo,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -619,12 +623,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Horsepower',
+                                    'Horsepower :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -645,8 +649,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: horsePower,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -660,12 +664,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
-                                    'Engine No:',
+                                    'Engine No :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -686,8 +690,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.026,
                                               fontWeight: FontWeight.bold),
                                           hintText: engineNo,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -701,12 +705,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.020,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Chassis No :',
                                     style: TextStyle(
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.bold,
                                         fontSize: size.width * 0.023),
                                   ),
                                 ),
@@ -727,8 +731,8 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                               fontSize: size.width * 0.022,
                                               fontWeight: FontWeight.bold),
                                           hintText: chassisNo,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                          contentPadding: const EdgeInsets.only(
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -751,18 +755,64 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                 ///
                 ///
                 //
-                SizedBox(height: size.width * 0.01),
+                SizedBox(
+                  height: 30,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 5.5),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Baseline(
+                          baseline: size.width * 0.039,
+                          baselineType: TextBaseline.alphabetic,
+                          child: Text(
+                            'Manufacturer Company :',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: size.width * 0.023),
+                          ),
+                        ),
+                        Expanded(
+                          child: Baseline(
+                            baseline: size.width * 0.04,
+                            baselineType: TextBaseline.alphabetic,
+                            child: Container(
+                              // decoration: BoxDecoration(
+                              //   border: Border.all(),
+                              // ),
+                              height: size.height * 0.05,
+                              child: TextField(
+                                readOnly: true,
+                                decoration: InputDecoration(
+                                  border: InputBorder.none,
+                                  hintStyle: TextStyle(
+                                      fontSize: size.width * 0.026,
+                                      fontWeight: FontWeight.bold),
+                                  hintText: company,
+                                  contentPadding: EdgeInsets.only(
+                                      // bottom: size.height * 0.002,
+
+                                      left: 5),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
 
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Baseline(
-                      baseline: size.width * 0.04,
+                      baseline: size.width * 0.023,
                       baselineType: TextBaseline.alphabetic,
                       child: Text(
-                        'Commission amount :',
+                        'Commission Amount :',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             fontSize: size.width * 0.025),
                       ),
                     ),
@@ -784,7 +834,7 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                               hintText: commissionAmount,
                               contentPadding: EdgeInsets.only(
-                                // bottom: size.height * 0.002,
+                                  // bottom: size.height * 0.002,
 
                                   left: size.width * 0.25),
                             ),
@@ -798,12 +848,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Baseline(
-                      baseline: size.width * 0.04,
+                      baseline: size.width * 0.023,
                       baselineType: TextBaseline.alphabetic,
                       child: Text(
-                        'Final vehicle price :',
+                        'Final Price of Vehicle:',
                         style: TextStyle(
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.bold,
                             fontSize: size.width * 0.025),
                       ),
                     ),
@@ -825,7 +875,7 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                               hintText: priceOfVehicle,
                               contentPadding: EdgeInsets.only(
-                                // bottom: size.height * 0.002,
+                                  // bottom: size.height * 0.002,
 
                                   left: size.width * 0.25),
                             ),
@@ -836,7 +886,7 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                   ],
                 ),
 
-                SizedBox(height: size.width * 0.02),
+                SizedBox(height: size.width * 0.05),
 
                 ///
 
@@ -854,11 +904,12 @@ class VehicleDetailsConfirmationPage extends StatelessWidget {
                       fontSize: size.width * 0.04, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: size.height * 0.1,
+                  height: size.height * 0.11,
                   child: TextField(
+                    minLines: 2,
+                    maxLines: 5,
                     readOnly: true,
                     decoration: InputDecoration(
-                      hintMaxLines: 2,
                       border: InputBorder.none,
                       hintText: conditionOfVehicle,
                       hintStyle: TextStyle(fontSize: size.width * 0.03),
@@ -950,7 +1001,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
       Text(
         heading,
         style:
-        TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
+            TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
       ),
       Expanded(
           child: SizedBox(
@@ -966,7 +1017,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
                   hintStyle: TextStyle(fontSize: size.width * 0.032),
                   hintText: hintText,
                   contentPadding:
-                  EdgeInsets.only(left: 5, bottom: size.width * 0.04),
+                      EdgeInsets.only(left: 5, bottom: size.width * 0.04),
                 ),
               ))),
     ],
@@ -1031,7 +1082,7 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
                 hintStyle: TextStyle(fontSize: size.width * 0.03),
                 hintText: hintText,
                 contentPadding:
-                EdgeInsets.only(bottom: size.width * 0.04, left: 5),
+                    EdgeInsets.only(bottom: size.width * 0.04, left: 5),
               ),
             ),
           ),

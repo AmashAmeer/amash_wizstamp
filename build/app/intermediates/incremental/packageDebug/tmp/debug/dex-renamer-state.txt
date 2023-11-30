@@ -1,4 +1,4 @@
-#Wed Nov 29 10:59:08 PKT 2023
-base.0=D\:\\final clone\\amash_wizstamp\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Wed Nov 29 17:13:04 PKT 2023
+base.0=D\:\\f projects\\wiz stamp final\\fm wizstamp\\amash_wizstamp\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

@@ -14,6 +14,9 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
   final String businessAddress;
   final ui.Image? signatureImage;
   final String cnicOfSeller;
+  final String otherinformation;
+  final String finalpriceofproperty;
+  final String commisionamount;
 
   RealEstateSellerConfirmationPage({
     required this.addressOfSeller,
@@ -23,11 +26,14 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
     required this.locationOfProperty,
     required this.signatureImage,
     required this.cnicOfSeller,
+    required this.otherinformation,
+    required this.finalpriceofproperty,
+    required this.commisionamount,
   });
 
   Future<Uint8List> encodeImage(ui.Image image) async {
     final ByteData? byteData =
-    await image.toByteData(format: ui.ImageByteFormat.png);
+        await image.toByteData(format: ui.ImageByteFormat.png);
     return Uint8List.view(byteData!.buffer);
   }
 
@@ -35,7 +41,10 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
       body: Padding(
         padding: EdgeInsets.only(
             left: size.width * 0.015,
@@ -74,11 +83,11 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      'Owner/Dealer',
+                      'Seller/Dealer                   ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      'Tenant',
+                      'Tenant     ',
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -94,185 +103,183 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-
-                    DottedBorder(
-                      padding: EdgeInsets.all(size.width * 0.015),
-                      child: SizedBox(
-                        height: size.height * 0.18,
-                        width: size.width * 0.42,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Baseline(
-                                  baseline: size.width * 0.04,
-                                  baselineType: TextBaseline.alphabetic,
-                                  child: Text(
-                                    'Name:',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: size.width * 0.03),
+                    Padding(
+                      padding: const EdgeInsets.all(2.5),
+                      child: DottedBorder(
+                        padding: EdgeInsets.all(size.width * 0.015),
+                        child: SizedBox(
+                          height: size.height * 0.18,
+                          width: size.width * 0.42,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.026,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Name:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
-                                    child: Container(
-                                      // decoration: BoxDecoration(
-                                      //   border: Border.all(),
-                                      // ),
-                                      height: size.height * 0.05,
-                                      child: TextField(
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
-                                          hintText: nameOfSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: nameOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
 
-                                              left: 5),
+                                                left: 5),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-
-
-                              ],
-                            ),
-
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Baseline(
-                                  baseline: size.width * 0.04,
-                                  baselineType: TextBaseline.alphabetic,
-                                  child: Text(
-                                    'CNIC:',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: size.width * 0.03),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.029,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'CNIC:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
-                                    child: Container(
-                                      // decoration: BoxDecoration(
-                                      //   border: Border.all(),
-                                      // ),
-                                      height: size.height * 0.05,
-                                      child: TextField(
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
-                                          hintText: cnicOfSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: cnicOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
 
-                                              left: 5),
+                                                left: 5),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-
-
-                              ],
-                            ),
-
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Baseline(
-                                  baseline: 15.0,
-                                  baselineType: TextBaseline.alphabetic,
-                                  child: Text(
-                                    'Phone:',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: size.width * 0.03),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.028,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Phone:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Baseline(
-                                    baseline: 15.0,baselineType: TextBaseline.alphabetic,
-                                    child: Container(
-                                      // decoration: BoxDecoration(
-                                      //   border: Border.all(),
-                                      // ),
-                                      height: size.height * 0.05,
-                                      child: TextField(
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
-                                          hintText: phoneOfSeller,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: 15.0,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.05,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.026,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: phoneOfSeller,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
 
-                                              left: 5),
+                                                left: 5),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-
-
-                              ],
-                            ),
-
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Baseline(
-                                  baseline:size.width * 0.04,
-                                  baselineType: TextBaseline.alphabetic,
-                                  child: Text(
-                                    'Address:',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: size.width * 0.03),
+                                ],
+                              ),
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Baseline(
+                                    baseline: size.width * 0.039,
+                                    baselineType: TextBaseline.alphabetic,
+                                    child: Text(
+                                      'Address:',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: size.width * 0.03),
+                                    ),
                                   ),
-                                ),
-                                Expanded(
-                                  child: Baseline(
-                                    baseline:size.width * 0.04,baselineType: TextBaseline.alphabetic,
-                                    child: Container(
-                                      // decoration: BoxDecoration(
-                                      //   border: Border.all(),
-                                      // ),
-                                      height: size.height * 0.1,
-                                      child: TextField(
-                                        readOnly: true,
-                                        decoration: InputDecoration(
-                                          border: InputBorder.none,
-                                          hintStyle: TextStyle(
-                                              fontSize: size.width * 0.022,fontWeight: FontWeight.bold),
-                                          hintText: businessAddress,
-                                          hintMaxLines:6,
-                                          contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                  Expanded(
+                                    child: Baseline(
+                                      baseline: size.width * 0.04,
+                                      baselineType: TextBaseline.alphabetic,
+                                      child: Container(
+                                        // decoration: BoxDecoration(
+                                        //   border: Border.all(),
+                                        // ),
+                                        height: size.height * 0.1,
+                                        child: TextField(
+                                          readOnly: true,
+                                          decoration: InputDecoration(
+                                            border: InputBorder.none,
+                                            hintStyle: TextStyle(
+                                                fontSize: size.width * 0.022,
+                                                fontWeight: FontWeight.bold),
+                                            hintText: businessAddress,
+                                            hintMaxLines: 6,
+                                            contentPadding: EdgeInsets.only(
+                                                // bottom: size.height * 0.002,
 
-                                              left: 5),
+                                                left: 5),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-
-
-                              ],
-                            ),
-
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -288,7 +295,7 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.026,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Name:',
@@ -299,7 +306,8 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -310,10 +318,11 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: nameOfSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -321,16 +330,13 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: size.width * 0.04,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'CNIC:',
@@ -341,7 +347,8 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -352,10 +359,11 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: cnicOfSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -363,16 +371,13 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Baseline(
-                                  baseline: 15.0,
+                                  baseline: size.width * 0.029,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Phone:',
@@ -383,7 +388,8 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline: 15.0,baselineType: TextBaseline.alphabetic,
+                                    baseline: 15.0,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -394,10 +400,11 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.026,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.026,
+                                              fontWeight: FontWeight.bold),
                                           hintText: phoneOfSeller,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -405,16 +412,13 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Baseline(
-                                  baseline:size.width * 0.04,
+                                  baseline: size.width * 0.039,
                                   baselineType: TextBaseline.alphabetic,
                                   child: Text(
                                     'Address:',
@@ -425,7 +429,8 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Baseline(
-                                    baseline:size.width * 0.04,baselineType: TextBaseline.alphabetic,
+                                    baseline: size.width * 0.04,
+                                    baselineType: TextBaseline.alphabetic,
                                     child: Container(
                                       // decoration: BoxDecoration(
                                       //   border: Border.all(),
@@ -436,11 +441,12 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                         decoration: InputDecoration(
                                           border: InputBorder.none,
                                           hintStyle: TextStyle(
-                                              fontSize: size.width * 0.025,fontWeight: FontWeight.bold),
+                                              fontSize: size.width * 0.025,
+                                              fontWeight: FontWeight.bold),
                                           hintText: addressOfSeller,
-                                          hintMaxLines:6,
+                                          hintMaxLines: 6,
                                           contentPadding: EdgeInsets.only(
-                                            // bottom: size.height * 0.002,
+                                              // bottom: size.height * 0.002,
 
                                               left: 5),
                                         ),
@@ -448,17 +454,12 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-
-
                               ],
                             ),
-
                           ],
                         ),
                       ),
                     ),
-
-
                   ],
                 ),
                 //
@@ -466,19 +467,22 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                 /// mid part
                 ///
                 //
-                reUsableSizedBox('Rent/Security :','payment here' , size),
+                reUsableSizedBox(
+                    'Final Price of Property :', finalpriceofproperty, size),
 
-                reUsableSizedBox('Commission amount', 'payment here', size),
+                reUsableSizedBox('Commission amount :', commisionamount, size),
 
-                reUsableSizedBox('Total Payment', 'payment here', size),
+                // reUsableSizedBox('Total Payment', 'payment here', size),
 
-                SizedBox(height: size.height*0.01,),
+                SizedBox(
+                  height: size.height * 0.015,
+                ),
 
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Building Location:',
+                      'Property Location :',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: size.width * 0.03),
@@ -487,26 +491,21 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                       child: SizedBox(
                         height: size.height * 0.05,
                         child: TextField(
-                          textAlignVertical:
-                          TextAlignVertical.center,
+                          textAlignVertical: TextAlignVertical.center,
                           readOnly: true,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-
-                            hintStyle: TextStyle(
-                                fontSize: size.width * 0.03),
+                            hintStyle: TextStyle(fontSize: size.width * 0.03),
                             hintText: locationOfProperty,
                             hintMaxLines: 5,
                             contentPadding: EdgeInsets.only(
-                                bottom: size.height * 0.035,
-                                left: 5),
+                                bottom: size.height * 0.024, left: 5),
                           ),
                         ),
                       ),
                     ),
                   ],
                 ),
-
 
                 //
                 ///
@@ -515,7 +514,7 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                 ///
                 ///
                 //
-                SizedBox(height: size.width * 0.02),
+                SizedBox(height: size.width * 0.05),
                 //
                 ///
                 ///
@@ -525,19 +524,18 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                 ///
                 //
                 Text(
-                  'Description of Property',
+                  'Other Information',
                   style: TextStyle(
                       fontSize: size.width * 0.04, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  height: size.height * 0.1,
+                  height: size.height * 0.150,
                   child: TextField(
                     readOnly: true,
                     decoration: InputDecoration(
-                      hintMaxLines: 4,
+                      hintMaxLines: 8,
                       border: InputBorder.none,
-                      hintText:
-                      'description of the thing lets say description Description here a quick brown fox jumps over the lazy dog that is a sentence containing all alphabets of english which is we used to practice',
+                      hintText: otherinformation,
                       hintStyle: TextStyle(fontSize: size.width * 0.03),
                     ),
                   ),
@@ -546,10 +544,48 @@ class RealEstateSellerConfirmationPage extends StatelessWidget {
                 SizedBox(height: size.width * 0.02),
 
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      'Signature :',
+                      'Seller/Dealer Signature:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: size.height * 0.02,
+                      ),
+                    ),
+                    FutureBuilder<Uint8List>(
+                      future: encodeImage(signatureImage!),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          // If the Future is complete, display the Image widget
+                          return Image.memory(
+                            snapshot.data!,
+                            height: 70,
+                            width: 70,
+                          );
+                        } else {
+                          // Display a placeholder or loading indicator while the Future is in progress
+                          return const CircularProgressIndicator();
+                        }
+                      },
+                    ),
+                  ],
+                ),
+
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                ///
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Buyer Signature:',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: size.height * 0.02,
@@ -596,7 +632,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
       Text(
         heading,
         style:
-        TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
+            TextStyle(fontSize: size.width * 0.03, fontWeight: FontWeight.bold),
       ),
       Expanded(
           child: SizedBox(
@@ -612,7 +648,7 @@ Widget reusableTextField(String heading, hintText, Size size) {
                   hintStyle: TextStyle(fontSize: size.width * 0.032),
                   hintText: hintText,
                   contentPadding:
-                  EdgeInsets.only(left: 5, bottom: size.width * 0.04),
+                      EdgeInsets.only(left: 5, bottom: size.width * 0.04),
                 ),
               ))),
     ],
@@ -670,11 +706,10 @@ Widget reUsableSizedBox(String heading, hintText, Size size) {
               readOnly: true,
               decoration: InputDecoration(
                 border: InputBorder.none,
-
                 hintStyle: TextStyle(fontSize: size.width * 0.03),
                 hintText: hintText,
                 contentPadding:
-                EdgeInsets.only(bottom: size.width * 0.04, left: 5),
+                    EdgeInsets.only(bottom: size.width * 0.036, left: 5),
               ),
             ),
           ),
